@@ -1,5 +1,7 @@
 # Odin template
 
+https://CyprianESPI.github.io/odin-battleship/
+
 ## Webpack for web
 
 ### Install
@@ -28,9 +30,7 @@ Once NVM is installed, you can use Node Package Manager to complete the installa
 
 `npm run deploy`
 
-Website is live at https://username.github.io/reponame/
-
-https://CyprianESPI.github.io/odin-template/
+Website is live at https://CyprianESPI.github.io/odin-battleship/
 
 #### Fix deploy in case of rebase
 
