@@ -1,4 +1,4 @@
-# Odin template
+# Odin Battleship
 
 https://CyprianESPI.github.io/odin-battleship/
 
