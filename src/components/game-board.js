@@ -19,16 +19,20 @@ class GameBoard {
         }
     }
 
-    // position/direction format: [x, y]
+    // position/direction format: [x, y] <-> [col, row]
     // position is the edge of ship
     placeShip(ship, position, direction) {
-        this.ships.push(ship);
+        const shipCoordinates = [];
         for (let i = 0; i < ship.length; i++) {
-            const pos_x = position[0] + i * direction[0];
-            const pos_y = position[1] + i * direction[1];
-            // pos_y and pos_x are swapped row and cols are confusing...
-            this.grid[pos_y][pos_x] = GameBoard.CellStatus.ship;
+            // Row and cols are confusing... be careful with index
+            const row = position[1] + i * direction[1];
+            const col = position[0] + i * direction[0];
+            this.grid[row][col] = GameBoard.CellStatus.ship;
+            shipCoordinates.push([row, col]);
         }
+        // Add the ship coordinates property
+        ship.shipCoordinates = shipCoordinates;
+        this.ships.push(ship);
     }
 }
 export default GameBoard;
