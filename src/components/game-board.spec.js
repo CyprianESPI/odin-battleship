@@ -47,4 +47,17 @@ describe('GameBoard', () => {
         expect(gb.receiveAttack([3, 5])).toBe(true);
         expect(s.isSunk()).toBe(true);
     });
+    test('gameOver', () => {
+        const size = 10;
+        const gb = new GameBoard(size);
+        const s = new Ship(3);
+        gb.placeShip(s, [3, 3], [1, 0]);
+
+        expect(gb.receiveAttack([3, 3])).toBe(true);
+        expect(gb.gameOver()).toBe(false);
+        expect(gb.receiveAttack([3, 4])).toBe(true);
+        expect(gb.gameOver()).toBe(false);
+        expect(gb.receiveAttack([3, 5])).toBe(true);
+        expect(gb.gameOver()).toBe(true);
+    });
 });

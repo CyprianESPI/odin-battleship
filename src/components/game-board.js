@@ -55,5 +55,14 @@ class GameBoard {
         this.grid[row][col] = GameBoard.CellStatus.waterHit;
         return false;
     }
+
+    gameOver() {
+        for (let ship of this.ships) {
+            if (!ship.isSunk())
+                return false;
+        }
+        // All the ships are sunk
+        return true;
+    }
 }
 export default GameBoard;
