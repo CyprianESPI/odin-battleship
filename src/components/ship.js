@@ -1,6 +1,7 @@
 class Ship {
-    constructor(length) {
+    constructor(length, name) {
         this.length = length;
+        this.name = name === undefined ? "undefined" : name;
         this.hits = 0;
     }
 
