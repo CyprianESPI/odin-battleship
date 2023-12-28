@@ -18,6 +18,12 @@ class Player {
         //this.shuffleShips();
     }
 
+    play(oponent, coordinates) {
+        this.plays.push(coordinates);
+        const hit = oponent.board.receiveAttack(coordinates);
+        return hit;
+    }
+
     shuffleShips() {
         // Randomly place ships
         for (let ship of this.ships) {
