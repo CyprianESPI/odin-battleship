@@ -43,3 +43,11 @@ Another way to fix it it to remove other gh-pages branches from the Github webpa
 **NOTE**
 
 `npm run ...` commands are described in the `package.json` file, under the `scripts` tag.
+
+---
+
+## Learning Outcomes
+
+### Personal Challenge
+
+Code without using Google.
