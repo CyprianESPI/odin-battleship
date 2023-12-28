@@ -1,9 +1,9 @@
 class GameBoard {
     static CellStatus = {
-        "water": 0,
-        "water-hit": 1,
-        "ship": 2,
-        "ship-hit": 3,
+        water: 0,
+        waterHit: 1,
+        ship: 2,
+        shipHit: 3,
     };
 
     constructor(size) {
@@ -33,6 +33,27 @@ class GameBoard {
         // Add the ship coordinates property
         ship.shipCoordinates = shipCoordinates;
         this.ships.push(ship);
+    }
+
+    // Returns true if a ship is hit
+    receiveAttack(coordinates) {
+        const row = coordinates[0];
+        const col = coordinates[1];
+        // Check if we hit a ship
+        for (let ship of this.ships) {
+            for (let coord of ship.shipCoordinates) {
+                if (row == coord[0]
+                    && col == coord[1]) {
+                    ship.hit();
+                    this.grid[row][col] = GameBoard.CellStatus.shipHit;
+                    return true;
+                }
+            }
+        }
+
+        // Ship not hit...
+        this.grid[row][col] = GameBoard.CellStatus.waterHit;
+        return false;
     }
 }
 export default GameBoard;
