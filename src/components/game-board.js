@@ -27,12 +27,18 @@ class GameBoard {
             // Row and cols are confusing... be careful with index
             const row = position[1] + i * direction[1];
             const col = position[0] + i * direction[0];
+            // Do not allow to put two ships to overlap
+            if (this.grid[row][col] == GameBoard.CellStatus.ship) {
+                return false;
+            }
+
             this.grid[row][col] = GameBoard.CellStatus.ship;
             shipCoordinates.push([row, col]);
         }
         // Add the ship coordinates property
         ship.shipCoordinates = shipCoordinates;
         this.ships.push(ship);
+        return true;
     }
 
     // Returns true if a ship is hit
