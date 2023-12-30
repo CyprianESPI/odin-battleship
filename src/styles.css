@@ -24,7 +24,26 @@ main {
     grid-template-rows: auto 1fr;
 }
 
+.board-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+}
+
+.numbers,
+.letters {
+    display: flex;
+    justify-content: space-around;
+    color: var(--clr-dark);
+    filter: brightness(0.50);
+}
+
+.letters {
+    flex-flow: column;
+}
+
 .board {
+    background-color: black;
     aspect-ratio: 1;
     width: fit-content;
     display: grid;
