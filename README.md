@@ -6,7 +6,7 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- Ensure computer fires everytime at a new cell
+- TBD
 
 ### Features
 
