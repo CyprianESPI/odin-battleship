@@ -2,6 +2,15 @@
 
 https://CyprianESPI.github.io/odin-battleship/
 
+## TODO
+
+### Bugfixes
+
+- Do not allow to place ships outside of board
+- Ensure computer fires everytime at a new cell
+
+### Features
+
 ## Webpack for web
 
 ### Install
