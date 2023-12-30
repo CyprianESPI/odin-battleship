@@ -40,11 +40,17 @@ class GameBoard {
                 // Do not allow to put two ships to overlap
                 return false;
             } else {
-                // Do not allow adjacent ships (diagonal is fine though)
                 if ((row + 1 < this.size && this.grid[row + 1][col] == GameBoard.CellStatus.ship)
                     || (row - 1 >= 0 && this.grid[row - 1][col] == GameBoard.CellStatus.ship)
                     || (col + 1 < this.size && this.grid[row][col + 1] == GameBoard.CellStatus.ship)
                     || (col - 1 >= 0 && this.grid[row][col - 1] == GameBoard.CellStatus.ship)) {
+                    // Do not allow adjacent ships
+                    return false;
+                } else if ((row + 1 < this.size && col + 1 < this.size && this.grid[row + 1][col + 1] == GameBoard.CellStatus.ship)
+                    || (row + 1 < this.size && col - 1 >= 0 && this.grid[row + 1][col - 1] == GameBoard.CellStatus.ship)
+                    || (row - 1 >= 0 && col + 1 < this.size && this.grid[row - 1][col + 1] == GameBoard.CellStatus.ship)
+                    || (row - 1 >= 0 && col + 1 < this.size && this.grid[row - 1][col - 1] == GameBoard.CellStatus.ship)) {
+                    // Do not allow diagonally adjacent ships
                     return false;
                 }
             }

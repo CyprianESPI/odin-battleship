@@ -10,9 +10,8 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Features
 
-- Do not allow ships to be diagonally adjacent
 - Improve AI to target adjacent to shipHit
-- Allow to move ships around
+- Allow to move ships around (move left/right move up/down) with clicks?
 
 ## Webpack for web
 
