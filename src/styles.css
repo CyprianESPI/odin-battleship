@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 2px solid red;
 }
 
 /*border: 2px solid red;*/
@@ -26,16 +25,20 @@ main {
 
 .board-container {
     display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
+    aspect-ratio: 1;
+    width: fit-content;
+    background-color: black;
+    border: 20px solid gray;
+    border-radius: 20px;
 }
 
 .numbers,
 .letters {
     display: flex;
     justify-content: space-around;
-    color: var(--clr-dark);
-    filter: brightness(0.50);
+    color: green;
 }
 
 .letters {
@@ -44,8 +47,6 @@ main {
 
 .board {
     background-color: black;
-    aspect-ratio: 1;
-    width: fit-content;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
