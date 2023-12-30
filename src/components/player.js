@@ -38,14 +38,17 @@ class Player {
     }
 
     shuffleShips() {
+        const directions = [[1, 0], [0, 1]];
         // Randomly place ships
         for (let ship of this.ships) {
             let row = Math.floor(Math.random() * (Player.boardSize - 1));
             let col = Math.floor(Math.random() * (Player.boardSize - 1));
+            let direction = Math.random() >= 0.5 ? directions[0] : directions[1];
 
-            while (!this.board.placeShip(ship, [row, col], [1, 0])) {
+            while (!this.board.placeShip(ship, [row, col], direction)) {
                 row = Math.floor(Math.random() * (Player.boardSize - 1));
                 col = Math.floor(Math.random() * (Player.boardSize - 1));
+                direction = Math.random() >= 0.5 ? directions[0] : directions[1];
             }
         }
         console.log(this.board.ships);

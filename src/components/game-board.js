@@ -25,18 +25,19 @@ class GameBoard {
     // position/direction format: [x, y] <-> [col, row]
     // position is the edge of ship
     placeShip(ship, position, direction) {
+        //console.log("placeShip", ship, position, direction);
         const shipCoordinates = [];
         for (let i = 0; i < ship.length; i++) {
             // Row and cols are confusing... be careful with index
             const row = position[1] + i * direction[1];
             const col = position[0] + i * direction[0];
 
-            if (this.grid[row][col] == GameBoard.CellStatus.ship) {
-                // Do not allow to put two ships to overlap
-                return false;
-            } else if (row < 0 || row >= this.size
+            if (row < 0 || row >= this.size
                 || col < 0 || col >= this.size) {
                 // Do not allow ships to go oustide of board
+                return false;
+            } else if (this.grid[row][col] == GameBoard.CellStatus.ship) {
+                // Do not allow to put two ships to overlap
                 return false;
             } else {
                 // Do not allow adjacent ships (diagonal is fine though)
