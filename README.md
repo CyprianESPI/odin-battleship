@@ -11,6 +11,8 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Features
 
+- Place ships vertically
+
 ## Webpack for web
 
 ### Install
