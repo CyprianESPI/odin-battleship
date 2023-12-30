@@ -73,7 +73,7 @@ class GameBoard {
         return true;
     }
 
-    render(parent, openentBoard) {
+    render(parent, game) {
         Utils.removeContent(parent);
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
@@ -83,7 +83,8 @@ class GameBoard {
                     // Only water cell can still be shot at
                     cell.addEventListener('click', (e) => {
                         console.log(`Firing at ${row}, ${col}`);
-                        //openentBoard.receiveAttack([row, col]);
+                        // TODO: only handle click for human player
+                        game.play([row, col]);
                     });
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
                     cell.className = "cell water-hit";
