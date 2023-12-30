@@ -6,12 +6,13 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- Do not allow to place ships outside of board
 - Ensure computer fires everytime at a new cell
 
 ### Features
 
-- Place ships vertically
+- Do not allow ships to be diagonally adjacent
+- Improve AI to target adjacent to shipHit
+- Allow to move ships around
 
 ## Webpack for web
 
