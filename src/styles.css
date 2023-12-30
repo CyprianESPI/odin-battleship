@@ -19,6 +19,11 @@ main {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.player-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
 .board {
     aspect-ratio: 1;
     width: fit-content;
