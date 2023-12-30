@@ -87,6 +87,7 @@ class GameBoard {
                     cell.className = "cell water";
                     // Can shoot at
                     if (this.enabled) {
+                        cell.className += " clickable";
                         cell.addEventListener('click', (e) => {
                             console.log(`Firing at ${row}, ${col}`);
                             game.play([row, col]);
@@ -98,6 +99,7 @@ class GameBoard {
                     cell.className = "cell ship";
                     // Can shoot at
                     if (this.enabled) {
+                        cell.className += " clickable";
                         cell.addEventListener('click', (e) => {
                             console.log(`Firing at ${row}, ${col}`);
                             game.play([row, col]);
