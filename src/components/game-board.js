@@ -83,7 +83,7 @@ class GameBoard {
                     // Only water cell can still be shot at
                     cell.addEventListener('click', (e) => {
                         console.log(`Firing at ${row}, ${col}`);
-                        openentBoard.receiveAttack([row, col]);
+                        //openentBoard.receiveAttack([row, col]);
                     });
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
                     cell.className = "cell water-hit";

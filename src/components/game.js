@@ -8,6 +8,7 @@ class Game {
     newGame() {
         this.human = new Player("You");
         this.computer = new Player("CPU");
+        this.currentPlayer = this.human;
         this.players = [this.human, this.computer];
         for (let p of this.players) {
             p.shuffleShips();
