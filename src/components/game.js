@@ -23,6 +23,13 @@ class Game {
         this.human.play(this.computer, coordinates);
         this.computer.playRandom(this.human);
         this.render();
+
+        // This should happen after the render as it's a block call
+        if (this.computer.board.gameOver()) {
+            alert("You win!");
+        } else if (this.human.board.gameOver()) {
+            alert("Computer wins!");
+        }
     }
 
     render() {
