@@ -15,6 +15,11 @@ function main() {
     const boardComputer = document.getElementById("board-computer");
     const game = new Game(boardHuman, boardComputer);
 
+    const restart = document.getElementById("restart");
+    restart.addEventListener('click', (e) => {
+        game.newGame();
+    });
+
     console.log("Initialized!");
 }
 
