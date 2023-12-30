@@ -1,5 +1,9 @@
 class Utils {
     static removeContent(elem) {
+        if (elem === null | elem === undefined) {
+            console.error("Utils.removeContent, elem is", elem);
+            return;
+        }
         while (elem.firstChild) {
             elem.firstChild.remove();
         }
