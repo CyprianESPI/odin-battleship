@@ -8,6 +8,16 @@
 /*border: 2px solid red;*/
 
 body {
-    display: block;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr;
     text-align: center;
 }
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+}
+
+.board {}
