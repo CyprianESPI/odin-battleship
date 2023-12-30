@@ -12,6 +12,7 @@ class GameBoard {
         this.ships = [];
         this.size = size;
         this.grid = [];
+        this.enabled = false;
         for (let row = 0; row < size; row++) {
             const row = [];
             for (let col = 0; col < size; col++) {
@@ -73,6 +74,10 @@ class GameBoard {
         return true;
     }
 
+    setEnabled(enabled) {
+        this.enabled = enabled;
+    }
+
     render(parent, game) {
         Utils.removeContent(parent);
         for (let row = 0; row < this.size; row++) {
@@ -80,16 +85,24 @@ class GameBoard {
                 const cell = document.createElement("div");
                 if (this.grid[row][col] === GameBoard.CellStatus.water) {
                     cell.className = "cell water";
-                    // Only water cell can still be shot at
-                    cell.addEventListener('click', (e) => {
-                        console.log(`Firing at ${row}, ${col}`);
-                        // TODO: only handle click for human player
-                        game.play([row, col]);
-                    });
+                    // Can shoot at
+                    if (this.enabled) {
+                        cell.addEventListener('click', (e) => {
+                            console.log(`Firing at ${row}, ${col}`);
+                            game.play([row, col]);
+                        });
+                    }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
                     cell.className = "cell water-hit";
                 } else if (this.grid[row][col] === GameBoard.CellStatus.ship) {
                     cell.className = "cell ship";
+                    // Can shoot at
+                    if (this.enabled) {
+                        cell.addEventListener('click', (e) => {
+                            console.log(`Firing at ${row}, ${col}`);
+                            game.play([row, col]);
+                        });
+                    }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
                     cell.className = "cell ship-hit";
                 }

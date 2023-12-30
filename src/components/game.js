@@ -15,6 +15,8 @@ class Game {
         for (let p of this.players) {
             p.shuffleShips();
         }
+        // Only allow to click on computer's board
+        this.computer.board.setEnabled(true);
     }
 
     play(coordinates) {

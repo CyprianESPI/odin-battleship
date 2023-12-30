@@ -15,23 +15,6 @@ function render() {
     GAME.render();
 }
 
-
-function gameLoop() {
-    console.log("gameLoop", GAME);
-    return;
-
-    if (GAME.currentPlayer == GAME.human) {
-        // Pass
-    } else if (GAME.currentPlayer == GAME.computer) {
-        GAME.currentPlayer.playRandom(GAME.human);
-        GAME.currentPlayer = GAME.human;
-    }
-
-    render();
-    // Recursive call
-    setTimeout(gameLoop, 5000);
-}
-
 // ================= //
 // Main
 // ================= //
@@ -45,8 +28,6 @@ function main() {
     render();
 
     console.log("Initialized!");
-
-    gameLoop();
 }
 
 main();
