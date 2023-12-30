@@ -73,13 +73,18 @@ class GameBoard {
         return true;
     }
 
-    render(parent) {
+    render(parent, openentBoard) {
         Utils.removeContent(parent);
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
                 const cell = document.createElement("div");
                 if (this.grid[row][col] === GameBoard.CellStatus.water) {
                     cell.className = "cell water";
+                    // Only water cell can still be shot at
+                    cell.addEventListener('click', (e) => {
+                        console.log(`Firing at ${row}, ${col}`);
+                        openentBoard.receiveAttack([row, col]);
+                    });
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
                     cell.className = "cell water-hit";
                 } else if (this.grid[row][col] === GameBoard.CellStatus.ship) {

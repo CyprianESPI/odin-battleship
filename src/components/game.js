@@ -15,8 +15,8 @@ class Game {
     }
 
     render(humanBoard, computerBoard) {
-        this.human.board.render(humanBoard);
-        this.computer.board.render(computerBoard);
+        this.human.board.render(humanBoard, this.computer.board);
+        this.computer.board.render(computerBoard, this.human.board);
     }
 }
 export default Game;
