@@ -16,10 +16,23 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .board {
     aspect-ratio: 1;
     width: fit-content;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.water,
+.water-hit {
+    background-color: blue;
+}
+
+.ship,
+.ship-hit {
+    background-color: gray;
 }

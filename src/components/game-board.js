@@ -72,5 +72,24 @@ class GameBoard {
         // All the ships are sunk
         return true;
     }
+
+    render(parent) {
+        Utils.removeContent(parent);
+        for (let row = 0; row < this.size; row++) {
+            for (let col = 0; col < this.size; col++) {
+                const cell = document.createElement("div");
+                if (this.grid[row][col] === GameBoard.CellStatus.water) {
+                    cell.className = "cell water";
+                } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
+                    cell.className = "cell water-hit";
+                } else if (this.grid[row][col] === GameBoard.CellStatus.ship) {
+                    cell.className = "cell ship";
+                } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
+                    cell.className = "cell ship-hit";
+                }
+                parent.appendChild(cell);
+            }
+        }
+    }
 }
 export default GameBoard;
