@@ -2,20 +2,6 @@ import Game from "./components/game";
 import Styles from "./styles.css";
 
 // ================= //
-// Globals
-// ================= //
-const BOARD_HUMAN = document.getElementById("board-human");
-const BOARD_COMPUTER = document.getElementById("board-computer");
-const GAME = new Game(BOARD_HUMAN, BOARD_COMPUTER);
-
-// ================= //
-// DOM interaction
-// ================= //
-function render() {
-    GAME.render();
-}
-
-// ================= //
 // Main
 // ================= //
 function main() {
@@ -25,7 +11,9 @@ function main() {
     const params = new URLSearchParams(document.location.search);
     console.log(params);
 
-    render();
+    const boardHuman = document.getElementById("board-human");
+    const boardComputer = document.getElementById("board-computer");
+    const game = new Game(boardHuman, boardComputer);
 
     console.log("Initialized!");
 }

@@ -16,6 +16,7 @@ class Game {
         }
         // Only allow to click on computer's board
         this.computer.board.setEnabled(true);
+        this.render();
     }
 
     play(coordinates) {
@@ -26,9 +27,11 @@ class Game {
 
         // This should happen after the render as it's a block call
         if (this.computer.board.gameOver()) {
-            alert("You win!");
+            alert("You win!\nPlay again?");
+            this.newGame();
         } else if (this.human.board.gameOver()) {
-            alert("Computer wins!");
+            alert("You lose...\nPlay again?");
+            this.newGame();
         }
     }
 
