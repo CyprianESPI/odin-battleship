@@ -46,12 +46,16 @@ main {
 }
 
 .board {
-    background-color: black;
+    border: 5px solid green;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
     gap: 10px;
     padding: 10px;
+}
+
+.cell {
+    border: 2px solid green;
 }
 
 .clickable {
@@ -72,6 +76,10 @@ main {
 
 .ship {
     background-color: gray;
+}
+
+#board-human {
+    filter: brightness(0.50);
 }
 
 /* Hide computer's ships */
