@@ -27,12 +27,18 @@ main {
     grid-template-columns: repeat(10, 1fr);
 }
 
-.water,
-.water-hit {
+.water {
     background-color: blue;
 }
 
-.ship,
-.ship-hit {
+.water-hit {
+    background-color: purple;
+}
+
+.ship {
     background-color: gray;
+}
+
+.ship-hit {
+    background-color: red;
 }
