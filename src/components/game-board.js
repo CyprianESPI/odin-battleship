@@ -1,3 +1,5 @@
+import Utils from "./utils";
+
 class GameBoard {
     static CellStatus = {
         water: 0,

@@ -22,7 +22,6 @@ class Player {
                 this.remainingPlays.push([row, col]);
             }
         }
-        //this.shuffleShips();
     }
 
     play(oponent, coordinates) {
@@ -41,10 +40,12 @@ class Player {
     shuffleShips() {
         // Randomly place ships
         for (let ship of this.ships) {
-            const row = Math.floor(Math.random() * (Player.boardSize - 1));
-            const col = Math.floor(Math.random() * (Player.boardSize - 1));
+            let row = Math.floor(Math.random() * (Player.boardSize - 1));
+            let col = Math.floor(Math.random() * (Player.boardSize - 1));
+
             while (!this.board.placeShip(ship, [row, col], [1, 0])) {
-                // Pass
+                row = Math.floor(Math.random() * (Player.boardSize - 1));
+                col = Math.floor(Math.random() * (Player.boardSize - 1));
             }
         }
         console.log(this.board.ships);
