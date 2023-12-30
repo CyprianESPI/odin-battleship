@@ -83,9 +83,11 @@ main {
 }
 
 /* Hide computer's ships */
+/*
 #board-computer>.ship {
     background-color: blue;
 }
+*/
 
 .ship-hit {
     background-color: red;

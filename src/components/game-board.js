@@ -30,15 +30,30 @@ class GameBoard {
             // Row and cols are confusing... be careful with index
             const row = position[1] + i * direction[1];
             const col = position[0] + i * direction[0];
-            // Do not allow to put two ships to overlap
-            if (this.grid[row][col] == GameBoard.CellStatus.ship) {
-                return false;
-            }
 
-            this.grid[row][col] = GameBoard.CellStatus.ship;
+            if (this.grid[row][col] == GameBoard.CellStatus.ship) {
+                // Do not allow to put two ships to overlap
+                return false;
+            } else if (row < 0 || row >= this.size
+                || col < 0 || col >= this.size) {
+                // Do not allow ships to go oustide of board
+                return false;
+            } else {
+                // Do not allow adjacent ships (diagonal is fine though)
+                if ((row + 1 < this.size && this.grid[row + 1][col] == GameBoard.CellStatus.ship)
+                    || (row - 1 >= 0 && this.grid[row - 1][col] == GameBoard.CellStatus.ship)
+                    || (col + 1 < this.size && this.grid[row][col + 1] == GameBoard.CellStatus.ship)
+                    || (col - 1 >= 0 && this.grid[row][col - 1] == GameBoard.CellStatus.ship)) {
+                    return false;
+                }
+            }
             shipCoordinates.push([row, col]);
         }
+
         // Add the ship coordinates property
+        for (let shipCoordinate of shipCoordinates) {
+            this.grid[shipCoordinate[0]][shipCoordinate[1]] = GameBoard.CellStatus.ship;
+        }
         ship.shipCoordinates = shipCoordinates;
         this.ships.push(ship);
         return true;
