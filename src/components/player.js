@@ -22,18 +22,25 @@ class Player {
                 this.remainingPlays.push([row, col]);
             }
         }
+        // Not my code :(
+        // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+        for (var i = this.remainingPlays.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = this.remainingPlays[i];
+            this.remainingPlays[i] = this.remainingPlays[j];
+            this.remainingPlays[j] = temp;
+        }
     }
 
     play(oponent, coordinates) {
         this.plays.push(coordinates);
-        Utils.removeObjFromArray(coordinates);
+        Utils.removeObjFromArray(this.remainingPlays, coordinates);
         const hit = oponent.board.receiveAttack(coordinates);
         return hit;
     }
 
     playRandom(oponent) {
-        const randomIndex = Math.floor(Math.random() * (this.remainingPlays.length - 1));
-        const coordinates = this.remainingPlays[randomIndex];
+        const coordinates = this.remainingPlays.pop();
         return this.play(oponent, coordinates);
     }
 
