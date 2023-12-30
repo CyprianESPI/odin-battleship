@@ -22,6 +22,20 @@ class GameBoard {
         }
     }
 
+    moveShip(ship, direction) {
+        for (let i = 0; i < ship.shipCoordinates.length; i++) {
+            // replace ship cells by water cells
+            this.grid[ship.shipCoordinates[i][0]][ship.shipCoordinates[i][1]] = GameBoard.CellStatus.water;
+            // Update ship position
+            ship.shipCoordinates[i][0] = ship.shipCoordinates[i][0] + direction[0];
+            ship.shipCoordinates[i][1] = ship.shipCoordinates[i][1] + direction[1];
+        }
+        // Update grid cells to be a ship again
+        for (let shipCoordinate of ship.shipCoordinates) {
+            this.grid[shipCoordinate[0]][shipCoordinate[1]] = GameBoard.CellStatus.ship;
+        }
+    }
+
     // position/direction format: [x, y] <-> [col, row]
     // position is the edge of ship
     placeShip(ship, position, direction) {
