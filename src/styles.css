@@ -1,3 +1,26 @@
+:root {
+    /* https://m1.material.io/style/color.html#color-color-palette */
+    /* Blue */
+    --clr-primary-50: #E3F2FD;
+    --clr-primary-100: #BBDEFB;
+    --clr-primary-200: #90CAF9;
+    --clr-primary-300: #64B5F6;
+    --clr-primary-400: #42A5F5;
+    --clr-primary-500: #2196F3;
+    --clr-primary-600: #1E88E5;
+    --clr-primary-700: #1976D2;
+    --clr-primary-800: #1565C0;
+    --clr-primary-900: #0D47A1;
+
+    /* Red */
+    --clr-A100: #FF8A80;
+    --clr-A200: #FF5252;
+    --clr-A400: #FF1744;
+    --clr-A700: #D50000;
+
+    --br: 15px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +40,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px 5% 10px 5%;
+    background-color: var(--clr-primary-300);
 }
 
 main {
@@ -29,6 +53,13 @@ main {
     height: 3rem;
     border-radius: 3rem;
     font-size: large;
+    background-color: var(--clr-primary-900);
+    color: white;
+}
+
+.rounded-btn:hover {
+    background-color: white;
+    color: var(--clr-primary-900);
 }
 
 .move-btn {
