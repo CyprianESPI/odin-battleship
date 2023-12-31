@@ -166,6 +166,11 @@ class GameBoard {
             const cell_size = 100;
             moveRight.style.left = `${coords[1] * cell_size}px`;
             moveRight.style.top = `${coords[0] * cell_size}px`;
+            moveRight.addEventListener('click', (e) => {
+                this.moveShip(ship, [0, 1]);
+                // Render callback
+                this.render(parent, game);
+            });
             overlay.appendChild(moveRight);
         }
         parent.appendChild(overlay);

@@ -20,12 +20,6 @@ function main() {
         game.newGame();
     });
 
-    const moveRight = document.getElementById("move-right");
-    moveRight.addEventListener('click', (e) => {
-        game.human.board.moveShip(game.human.board.ships[0], [0, 1]);
-        game.render();
-    });
-
     console.log("Initialized!");
 }
 
