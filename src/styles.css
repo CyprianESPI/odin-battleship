@@ -85,6 +85,10 @@ main {
     cursor: pointer;
 }
 
+.enabled:hover {
+    color: var(--clr-A100);
+}
+
 .disabled {
     filter: brightness(0.50);
 }
