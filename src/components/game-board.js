@@ -264,6 +264,16 @@ class GameBoard {
         overlay.className = "overlay";
         for (let ship of this.ships) {
             const coords = [ship.shipCoordinates[0], ship.shipCoordinates[ship.shipCoordinates.length - 1]];
+
+            const shipOverlay = document.createElement("div");
+            shipOverlay.className = "ship-overlay";
+            const offset = 2;
+            shipOverlay.style.left = `${(coords[0][1]) * 10 + offset}%`;
+            shipOverlay.style.top = `${(coords[0][0]) * 10 + offset}%`;
+            shipOverlay.style.height = `${Math.abs(coords[1][0] - coords[0][0] + 1) * 10 - 2 * offset}%`;
+            shipOverlay.style.width = `${Math.abs(coords[1][1] - coords[0][1] + 1) * 10 - 2 * offset}%`;
+            overlay.appendChild(shipOverlay);
+
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.left, coords, parent, game, ship));
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.right, coords, parent, game, ship));
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.up, coords, parent, game, ship));
