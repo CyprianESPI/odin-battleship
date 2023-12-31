@@ -29,6 +29,53 @@ class GameBoard {
         }
     }
 
+    isMoveAllowed(ship, trans) {
+        const newShipPositions = []
+        for (let shipCoordinate of ship.shipCoordinates) {
+            // Row and cols are confusing... be careful with index
+            const row = shipCoordinate[0] + trans[0];
+            const col = shipCoordinate[1] + trans[1];
+
+            if (row < 0 || row >= this.size
+                || col < 0 || col >= this.size) {
+                // Do not allow ships to go oustide of board
+                return false;
+            }
+            newShipPositions.push([row, col]);
+        }
+
+        // Prepare 9 squares around each position
+        const newAdjShipPositions = [];
+        for (let newShipPos of newShipPositions) {
+            newAdjShipPositions.push([newShipPos[0] + 1, newShipPos[1] + 1]);
+            newAdjShipPositions.push([newShipPos[0] + 1, newShipPos[1] + 0]);
+            newAdjShipPositions.push([newShipPos[0] + 1, newShipPos[1] - 1]);
+            newAdjShipPositions.push([newShipPos[0] + 0, newShipPos[1] + 1]);
+            newAdjShipPositions.push([newShipPos[0] + 0, newShipPos[1] + 0]);
+            newAdjShipPositions.push([newShipPos[0] + 0, newShipPos[1] - 1]);
+            newAdjShipPositions.push([newShipPos[0] - 1, newShipPos[1] + 1]);
+            newAdjShipPositions.push([newShipPos[0] - 1, newShipPos[1] + 0]);
+            newAdjShipPositions.push([newShipPos[0] - 1, newShipPos[1] - 1]);
+        }
+
+        for (let newAdjShipPos of newAdjShipPositions) {
+            if (newAdjShipPos[0] < 0 || newAdjShipPos[0] >= this.size
+                || newAdjShipPos[1] < 0 || newAdjShipPos[1] >= this.size) {
+                // Do not allow ships to go oustide of board
+                continue;
+            }
+            if (this.grid[newAdjShipPos[0]][newAdjShipPos[1]] === GameBoard.CellStatus.ship) {
+                // Check if it is really another ship
+                if (ship.shipCoordinates.find(coords => coords[0] === newAdjShipPos[0] && coords[1] === newAdjShipPos[1])) {
+                    continue;
+                }
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     moveShip(ship, direction) {
         for (let i = 0; i < ship.shipCoordinates.length; i++) {
             // replace ship cells by water cells
@@ -46,6 +93,7 @@ class GameBoard {
     // position/direction format: [x, y] <-> [col, row]
     // position is the edge of ship
     placeShip(ship, position, direction) {
+        // TODO: refactor this code
         //console.log("placeShip", ship, position, direction);
         const shipCoordinates = [];
         for (let i = 0; i < ship.length; i++) {
@@ -123,7 +171,6 @@ class GameBoard {
 
     createMoveButton(direction, coords, parent, game, ship) {
         const btn = document.createElement("button");
-        btn.className = "material-symbols-outlined move-btn";
         btn.innerText = "chevron_right";
         let trans = [0, 0];
         if (direction === GameBoard.Direction.right) {
@@ -145,11 +192,16 @@ class GameBoard {
         btn.style.left = `${(coords[0][1] + coords[1][1]) / 2 * 10 + trans[1] * 5 + 3}%`;
         btn.style.top = `${(coords[0][0] + coords[1][0]) / 2 * 10 + trans[0] * 5 + 3}%`;
 
-        btn.addEventListener('click', (e) => {
-            this.moveShip(ship, trans);
-            // Render callback
-            this.render(parent, game);
-        });
+        if (this.isMoveAllowed(ship, trans)) {
+            btn.className = "material-symbols-outlined move-btn enabled";
+            btn.addEventListener('click', (e) => {
+                this.moveShip(ship, trans);
+                // Render callback
+                this.render(parent, game);
+            });
+        } else {
+            btn.className = "material-symbols-outlined move-btn disabled";
+        }
 
         return btn;
     }

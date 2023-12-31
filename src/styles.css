@@ -33,6 +33,10 @@ button {
     font-size: 50px;
 }
 
+.disabled {
+    filter: brightness(0.50);
+}
+
 .player-container {
     display: grid;
     grid-template-rows: auto 1fr;

@@ -11,7 +11,7 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Features
 
 - Improve AI to target adjacent to shipHit
-- Allow to move ships around (move left/right move up/down) with clicks?
+- Add 2 human player switch play option
 
 ## Webpack for web
 
