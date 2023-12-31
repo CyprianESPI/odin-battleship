@@ -1,6 +1,13 @@
 import Utils from "./utils";
 
 class GameBoard {
+    static Direction = {
+        right: [0, 1],
+        left: [0, -1],
+        up: [1, 0],
+        down: [-1, 0],
+    }
+
     static CellStatus = {
         water: 0,
         waterHit: 1,
@@ -114,6 +121,37 @@ class GameBoard {
         this.enabled = enabled;
     }
 
+    createMoveButton(direction, coords, parent, game, ship) {
+        const btn = document.createElement("button");
+        btn.className = "material-symbols-outlined";
+        let trans = [0, 0];
+        if (direction === GameBoard.Direction.right) {
+            btn.innerText = "chevron_right";
+            trans = [0, 1];
+        } else if (direction === GameBoard.Direction.left) {
+            btn.innerText = "chevron_right";
+            trans = [0, -1];
+        } else if (direction === GameBoard.Direction.up) {
+            btn.innerText = "chevron_right";
+            trans = [-1, 0];
+        } else if (direction === GameBoard.Direction.down) {
+            btn.innerText = "chevron_right";
+            trans = [1, 0];
+        }
+
+        // Rows : y dir and Cols : x dir
+        btn.style.left = `${coords[1] * 10 + trans[1] * 5}%`;
+        btn.style.top = `${coords[0] * 10 + trans[0] * 5}%`;
+
+        btn.addEventListener('click', (e) => {
+            this.moveShip(ship, trans);
+            // Render callback
+            this.render(parent, game);
+        });
+
+        return btn;
+    }
+
     render(parent, game) {
         // Remove content
         Utils.removeContent(parent);
@@ -157,22 +195,12 @@ class GameBoard {
         // Render ships control
         const overlay = document.createElement("div");
         overlay.className = "overlay";
-
         for (let ship of this.ships) {
-            const moveRight = document.createElement("button");
-            moveRight.className = "material-symbols-outlined";
-            moveRight.innerText = "chevron_right";
-
             const coords = ship.shipCoordinates[0];
-            // Rows : y dir and Cols : x dir
-            moveRight.style.left = `${coords[1] * 10}%`;
-            moveRight.style.top = `${coords[0] * 10}%`;
-            moveRight.addEventListener('click', (e) => {
-                this.moveShip(ship, [0, 1]);
-                // Render callback
-                this.render(parent, game);
-            });
-            overlay.appendChild(moveRight);
+            overlay.appendChild(this.createMoveButton(GameBoard.Direction.left, coords, parent, game, ship));
+            overlay.appendChild(this.createMoveButton(GameBoard.Direction.right, coords, parent, game, ship));
+            overlay.appendChild(this.createMoveButton(GameBoard.Direction.up, coords, parent, game, ship));
+            overlay.appendChild(this.createMoveButton(GameBoard.Direction.down, coords, parent, game, ship));
         }
         parent.appendChild(overlay);
     }
