@@ -10,6 +10,7 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Features
 
+- Improve UI/UX
 - Improve AI to target adjacent to shipHit
 - Add 2 human player switch play option
 
@@ -62,3 +63,8 @@ Another way to fix it it to remove other gh-pages branches from the Github webpa
 ### Personal Challenge
 
 Code without using Google.
+
+Failed:
+
+- Used StackOverflow for shuffling an array
+- Used GoogleFonts for icons
