@@ -30,6 +30,10 @@ class GameBoard {
     }
 
     isMoveAllowed(ship, trans) {
+        if (ship.isDamaged()) {
+            return false;
+        }
+
         const newShipPositions = []
         for (let shipCoordinate of ship.shipCoordinates) {
             // Row and cols are confusing... be careful with index

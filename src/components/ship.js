@@ -12,5 +12,9 @@ class Ship {
     isSunk() {
         return this.hits >= this.length;
     }
+
+    isDamaged() {
+        return this.hits > 0;
+    }
 }
 export default Ship;
