@@ -176,15 +176,16 @@ main {
     background-color: var(--clr-A400);
 }
 
-/*
-#board-human {
-    filter: brightness(0.50);
+#board-human>:first-child {
+    filter: brightness(0.666);
 }
-*/
 
 /* Hide computer's ships */
-/*
-#board-computer>.ship {
-    background-color: blue;
+#board-computer>:first-child>* {
+    background-color: var(--clr-primary-300);
 }
-*/
+
+/* Hide computer's ships overlay */
+#board-computer>:nth-child(2) {
+    display: none;
+}
