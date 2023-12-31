@@ -142,8 +142,8 @@ class GameBoard {
         }
 
         // Rows : y dir and Cols : x dir
-        btn.style.left = `${coords[1] * 10 + trans[1] * 5}%`;
-        btn.style.top = `${coords[0] * 10 + trans[0] * 5}%`;
+        btn.style.left = `${(coords[0][1] + coords[1][1]) / 2 * 10 + trans[1] * 5}%`;
+        btn.style.top = `${(coords[0][0] + coords[1][0]) / 2 * 10 + trans[0] * 5}%`;
 
         btn.addEventListener('click', (e) => {
             this.moveShip(ship, trans);
@@ -198,7 +198,7 @@ class GameBoard {
         const overlay = document.createElement("div");
         overlay.className = "overlay";
         for (let ship of this.ships) {
-            const coords = ship.shipCoordinates[0];
+            const coords = [ship.shipCoordinates[0], ship.shipCoordinates[ship.shipCoordinates.length - 1]];
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.left, coords, parent, game, ship));
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.right, coords, parent, game, ship));
             overlay.appendChild(this.createMoveButton(GameBoard.Direction.up, coords, parent, game, ship));
