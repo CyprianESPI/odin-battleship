@@ -140,7 +140,17 @@ main {
     padding: 10px;
 }
 
-.cell {}
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    border-radius: 50%;
+    width: 33%;
+    height: 33%;
+}
 
 .clickable {
     cursor: crosshair;
@@ -154,12 +164,16 @@ main {
     background-color: var(--clr-primary-300);
 }
 
-.water-hit {
-    background-color: purple;
+.miss>* {
+    background-color: var(--clr-primary-900);
 }
 
 .ship {
     background-color: gray;
+}
+
+.hit>* {
+    background-color: var(--clr-A400);
 }
 
 /*
@@ -174,7 +188,3 @@ main {
     background-color: blue;
 }
 */
-
-.ship-hit {
-    background-color: red;
-}

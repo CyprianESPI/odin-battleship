@@ -225,6 +225,8 @@ class GameBoard {
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
                 const cell = document.createElement("div");
+                const dot = document.createElement("div");
+                dot.className = "dot";
                 if (this.grid[row][col] === GameBoard.CellStatus.water) {
                     cell.className = "cell water";
                     // Can shoot at
@@ -236,7 +238,8 @@ class GameBoard {
                         });
                     }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
-                    cell.className = "cell water-hit";
+                    cell.className = "cell water miss";
+                    cell.appendChild(dot);
                 } else if (this.grid[row][col] === GameBoard.CellStatus.ship) {
                     cell.className = "cell ship";
                     // Can shoot at
@@ -248,7 +251,8 @@ class GameBoard {
                         });
                     }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
-                    cell.className = "cell ship-hit";
+                    cell.className = "cell ship hit";
+                    cell.appendChild(dot);
                 }
                 board.appendChild(cell);
             }
