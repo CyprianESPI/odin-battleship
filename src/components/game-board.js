@@ -124,19 +124,21 @@ class GameBoard {
     createMoveButton(direction, coords, parent, game, ship) {
         const btn = document.createElement("button");
         btn.className = "material-symbols-outlined";
+        btn.innerText = "chevron_right";
         let trans = [0, 0];
         if (direction === GameBoard.Direction.right) {
-            btn.innerText = "chevron_right";
+            // Rotate goes clockwise
+            btn.style.transform = "rotate(0deg)";
             trans = [0, 1];
         } else if (direction === GameBoard.Direction.left) {
-            btn.innerText = "chevron_right";
+            btn.style.transform = "rotate(180deg)";
             trans = [0, -1];
         } else if (direction === GameBoard.Direction.up) {
-            btn.innerText = "chevron_right";
+            btn.style.transform = "rotate(270deg)";
             trans = [-1, 0];
         } else if (direction === GameBoard.Direction.down) {
-            btn.innerText = "chevron_right";
             trans = [1, 0];
+            btn.style.transform = "rotate(90deg)";
         }
 
         // Rows : y dir and Cols : x dir
