@@ -70,6 +70,11 @@ class GameBoard {
                     continue;
                 }
                 return false;
+            } else if (this.grid[newAdjShipPos[0]][newAdjShipPos[1]] === GameBoard.CellStatus.waterHit) {
+                // Do not allow to move onto a cell which already received a hit
+                if (newShipPositions.find(coords => this.grid[coords[0]][coords[1]] === GameBoard.CellStatus.waterHit)) {
+                    return false;
+                }
             }
         }
 
