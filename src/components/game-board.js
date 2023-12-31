@@ -157,15 +157,16 @@ class GameBoard {
         // Render ships control
         const overlay = document.createElement("div");
         overlay.className = "overlay";
+
         for (let ship of this.ships) {
             const moveRight = document.createElement("button");
             moveRight.className = "material-symbols-outlined";
             moveRight.innerText = "chevron_right";
 
             const coords = ship.shipCoordinates[0];
-            const cell_size = 100;
-            moveRight.style.left = `${coords[1] * cell_size}px`;
-            moveRight.style.top = `${coords[0] * cell_size}px`;
+            // Rows : y dir and Cols : x dir
+            moveRight.style.left = `${coords[1] * 10}%`;
+            moveRight.style.top = `${coords[0] * 10}%`;
             moveRight.addEventListener('click', (e) => {
                 this.moveShip(ship, [0, 1]);
                 // Render callback
