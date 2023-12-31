@@ -25,7 +25,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 2px solid red;
 }
 
 /*border: 2px solid red;*/
@@ -90,9 +89,14 @@ main {
     filter: brightness(0.50);
 }
 
+/* card like container */
 .player-container {
     display: grid;
     grid-template-rows: auto 1fr;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 10px 10px auto 10px;
+    border-radius: var(--br);
+    padding: 5px;
 }
 
 .board-container {
