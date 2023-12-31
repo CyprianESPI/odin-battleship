@@ -142,8 +142,8 @@ class GameBoard {
         }
 
         // Rows : y dir and Cols : x dir
-        btn.style.left = `${(coords[0][1] + coords[1][1]) / 2 * 10 + trans[1] * 5}%`;
-        btn.style.top = `${(coords[0][0] + coords[1][0]) / 2 * 10 + trans[0] * 5}%`;
+        btn.style.left = `${(coords[0][1] + coords[1][1]) / 2 * 10 + trans[1] * 5 + 3}%`;
+        btn.style.top = `${(coords[0][0] + coords[1][0]) / 2 * 10 + trans[0] * 5 + 3}%`;
 
         btn.addEventListener('click', (e) => {
             this.moveShip(ship, trans);
