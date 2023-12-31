@@ -10,6 +10,7 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Features
 
+- Responsive
 - Improve UI/UX
 - Improve AI to target adjacent to shipHit
 - Add 2 human player switch play option
