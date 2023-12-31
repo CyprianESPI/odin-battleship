@@ -26,6 +26,8 @@ button {
     width: 50px;
 }
 
+.move-btn {}
+
 .player-container {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -70,9 +72,11 @@ button {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
+    pointer-events: none;
 }
 
 .overlay>* {
+    pointer-events: all;
     position: relative;
     grid-column: 1;
     grid-row: 1;

@@ -123,7 +123,7 @@ class GameBoard {
 
     createMoveButton(direction, coords, parent, game, ship) {
         const btn = document.createElement("button");
-        btn.className = "material-symbols-outlined";
+        btn.className = "material-symbols-outlined move-btn";
         btn.innerText = "chevron_right";
         let trans = [0, 0];
         if (direction === GameBoard.Direction.right) {
