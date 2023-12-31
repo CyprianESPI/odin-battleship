@@ -74,6 +74,10 @@ main {
     font-size: 50px;
 }
 
+.enabled {
+    cursor: pointer;
+}
+
 .disabled {
     filter: brightness(0.50);
 }
@@ -89,16 +93,12 @@ main {
     grid-template-columns: auto 1fr auto;
     aspect-ratio: 1;
     width: fit-content;
-    background-color: black;
-    border: 20px solid gray;
-    border-radius: 20px;
 }
 
 .numbers,
 .letters {
     display: flex;
     justify-content: space-around;
-    color: green;
 }
 
 .letters {
@@ -133,7 +133,6 @@ main {
 }
 
 .board {
-    border: 5px solid green;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
@@ -141,20 +140,18 @@ main {
     padding: 10px;
 }
 
-.cell {
-    border: 2px solid green;
-}
+.cell {}
 
 .clickable {
     cursor: crosshair;
 }
 
 .clickable:hover {
-    background-color: green;
+    filter: brightness(0.50);
 }
 
 .water {
-    background-color: blue;
+    background-color: var(--clr-primary-300);
 }
 
 .water-hit {
@@ -165,9 +162,11 @@ main {
     background-color: gray;
 }
 
+/*
 #board-human {
     filter: brightness(0.50);
 }
+*/
 
 /* Hide computer's ships */
 /*
