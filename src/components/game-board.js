@@ -115,7 +115,12 @@ class GameBoard {
     }
 
     render(parent, game) {
+        // Remove content
         Utils.removeContent(parent);
+
+        // Render board
+        const board = document.createElement("div");
+        board.className = "board";
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
                 const cell = document.createElement("div");
@@ -144,9 +149,28 @@ class GameBoard {
                 } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
                     cell.className = "cell ship-hit";
                 }
-                parent.appendChild(cell);
+                board.appendChild(cell);
             }
         }
+        parent.appendChild(board);
+
+        // Render ships control
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        for (let ship of this.ships) {
+            const moveRight = document.createElement("button");
+            moveRight.className = "material-symbols-outlined";
+            moveRight.innerText = "chevron_right";
+            //moveRight.style.display = "inline";
+            moveRight.style.position = "absolute";
+
+            const coords = ship.shipCoordinates[0];
+            const cell_size = 100;
+            moveRight.style.left = `${coords[0] * cell_size}px`;
+            moveRight.style.top = `${coords[1] * cell_size}px`;
+            overlay.appendChild(moveRight);
+        }
+        parent.appendChild(overlay);
     }
 }
 export default GameBoard;

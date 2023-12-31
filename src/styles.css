@@ -53,6 +53,21 @@ button {
     flex-flow: column;
 }
 
+/* Overlay 2 grids on top of another */
+.board-stack {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+/* set childs on same grid area to ensure they overlap */
+.board-stack>* {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.overlay {}
+
 .board {
     border: 5px solid green;
     display: grid;
