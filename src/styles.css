@@ -13,20 +13,30 @@ body {
     text-align: center;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5% 10px 5%;
+}
+
 main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 
-button {
+.rounded-btn {
+    width: 125px;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: large;
+}
+
+.move-btn {
     border: none;
     box-shadow: 0 2px 2px #888888;
     border-radius: 50%;
     aspect-ratio: 1;
     width: 50px;
-}
-
-.move-btn {
     box-shadow: none;
     background: none;
     color: white;
