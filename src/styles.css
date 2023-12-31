@@ -64,7 +64,7 @@ main {
 
 .move-btn {
     border: none;
-    box-shadow: 0 2px 2px #888888;
+    text-shadow: 0 0 5px #000;
     border-radius: 50%;
     aspect-ratio: 1;
     width: 50px;
