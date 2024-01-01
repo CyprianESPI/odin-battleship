@@ -108,10 +108,8 @@ button {
     }
 }
 
-
-
 .disabled {
-    filter: brightness(0.50);
+    display: none;
 }
 
 /* card like container */
