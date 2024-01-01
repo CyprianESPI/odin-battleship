@@ -68,7 +68,8 @@ class GameBoard {
                 // Do not allow ships to go oustide of board
                 continue;
             }
-            if (this.grid[newAdjShipPos[0]][newAdjShipPos[1]] === GameBoard.CellStatus.ship) {
+            if (this.grid[newAdjShipPos[0]][newAdjShipPos[1]] === GameBoard.CellStatus.ship
+                || this.grid[newAdjShipPos[0]][newAdjShipPos[1]] === GameBoard.CellStatus.shipHit) {
                 // Check if it is really another ship
                 if (ship.shipCoordinates.find(coords => coords[0] === newAdjShipPos[0] && coords[1] === newAdjShipPos[1])) {
                     continue;

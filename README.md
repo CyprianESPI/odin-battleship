@@ -6,7 +6,7 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- Ship can move in diag adjacent after another ship has been hit
+- TBD
 
 ### Features
 
