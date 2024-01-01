@@ -233,7 +233,9 @@ button.enabled {
 
 /* Hide computer's ships overlay */
 #board-computer>:nth-child(2) {
-    display: none;
+    :not(.sunk) {
+        display: none;
+    }
 }
 
 #oponent>h2 {

@@ -33,7 +33,7 @@ class Game {
         this.humanBoard.classList.add('disabled');
         this.computerBoard.classList.add('disabled');
         console.log("computerPlay", this.humanBoard, this.computerBoard);
-        const delayMs = 1000;
+        const delayMs = 1;
         setTimeout(() => {
             const hit = this.computer.playRandom(this.human);
             console.log("setTimeout", hit);

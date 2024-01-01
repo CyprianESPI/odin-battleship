@@ -268,6 +268,8 @@ class GameBoard {
 
             const shipOverlay = document.createElement("div");
             shipOverlay.className = "ship-overlay";
+            shipOverlay.className += ship.isSunk() ? " sunk" : "";
+            shipOverlay.className += ship.isDamaged() ? " damaged" : "";
             const offset = 2;
             shipOverlay.style.left = `${(coords[0][1]) * 10 + offset}%`;
             shipOverlay.style.top = `${(coords[0][0]) * 10 + offset}%`;
