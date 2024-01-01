@@ -7,9 +7,11 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Bugfixes
 
 - Remove sunk ship adjcent hits from computer
+- Align ship overlay
 
 ### Features
 
+- Hitmarler: red circle > red x
 - Improve AI to target adjacent to shipHit
 - Add 2 human player switch play option
 - Add online multiplayer
