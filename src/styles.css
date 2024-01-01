@@ -90,21 +90,22 @@ button {
 }
 
 .move-btn {
-    text-shadow: 0 0 5px #000;
+    text-shadow: 0 0 10px #000;
     border-radius: 50%;
     box-shadow: none;
     background: none;
-    margin-top: -2rem;
-    margin-left: -2rem;
-    width: 4rem;
-    height: 4rem;
-    font-size: 4rem;
+    margin-top: -5cqh;
+    margin-left: -5cqh;
+    width: 10cqh;
+    height: 10cqh;
+    font-size: 10cqh;
 }
 
 @media (hover:hover) {
     button.enabled:hover {
         filter: brightness(1.50);
         transform: scale(1.15);
+        text-shadow: 0 0 20px #000;
     }
 }
 
@@ -153,6 +154,7 @@ button {
 }
 
 .overlay {
+    container-type: size;
     position: relative;
     display: grid;
     grid-template-rows: 1fr;
