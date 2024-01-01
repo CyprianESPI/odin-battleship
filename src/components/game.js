@@ -21,8 +21,18 @@ class Game {
 
     play(coordinates) {
         // When the human plays, the computer plays right after
-        this.human.play(this.computer, coordinates);
-        this.computer.playRandom(this.human);
+        const hit = this.human.play(this.computer, coordinates);
+        // If human hit, do not let the computer play
+        if (hit) {
+            this.render();
+            return;
+        }
+
+        // If computer hit, do not let the human play
+        while (this.computer.playRandom(this.human)) {
+            this.render();
+        }
+
         this.render();
 
         // This should happen after the render as it's a block call
