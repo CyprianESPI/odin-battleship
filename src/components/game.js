@@ -17,6 +17,57 @@ class Game {
         // Only allow to click on computer's board
         this.computer.board.setEnabled(true);
         this.render();
+        // TODO: add multi
+        //this.newMutiplayerGameOnline();
+    }
+
+    // Mutiplayer chat-gpt powered :)
+    newMutiplayerGameOnline() {
+        const p1 = this.human;
+        const p2 = this.computer;
+        // Set up event handlers for ICE candidates and data channel
+        p1.peerConnection.onicecandidate = event => {
+            if (event.candidate) {
+                p2.peerConnection.addIceCandidate(event.candidate);
+            }
+        };
+        p2.peerConnection.onicecandidate = event => {
+            if (event.candidate) {
+                p1.peerConnection.addIceCandidate(event.candidate);
+            }
+        };
+        // Create data channel
+        const dataChannel = p1.peerConnection.createDataChannel('dataChannel');
+        dataChannel.onopen = () => {
+            console.log('Data channel opened!');
+            dataChannel.send('Hello from human!');
+        };
+
+        dataChannel.onmessage = event => {
+            console.log('Received message:', event.data);
+        };
+
+        p2.peerConnection.ondatachannel = event => {
+            event.channel.onmessage = event => {
+                console.log(event);
+                console.log('Received message:', event.data);
+            };
+
+            event.channel.onopen = () => {
+                console.log(event);
+                console.log('Data channel opened!');
+                event.channel.send('Hello from computer!');
+            };
+        };
+
+        // Establish connection
+        p1.peerConnection.createOffer()
+            .then(offer => p1.peerConnection.setLocalDescription(offer))
+            .then(() => p2.peerConnection.setRemoteDescription(p1.peerConnection.localDescription))
+            .then(() => p2.peerConnection.createAnswer())
+            .then(answer => p2.peerConnection.setLocalDescription(answer))
+            .then(() => p1.peerConnection.setRemoteDescription(p2.peerConnection.localDescription))
+            .catch(error => console.error('Error establishing connection:', error));
     }
 
 

@@ -4,9 +4,16 @@ import Utils from "./utils";
 
 class Player {
     static boardSize = 10;
+    static peerConnectionConfig = {
+        iceServers: [
+            { urls: 'stun:stun.l.google.com:19302' } // Using Google's public STUN server
+        ]
+    };
 
     constructor(name) {
         this.name = name;
+        // TODO: add multi
+        //this.peerConnection = new RTCPeerConnection(Player.peerConnectionConfig);
         this.board = new GameBoard(Player.boardSize);
         this.ships = [
             new Ship(2, "corvette"),
