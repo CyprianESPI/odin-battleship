@@ -6,14 +6,19 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- TBD
+- Ship can move in diag adjacent after another ship has been hit
 
 ### Features
 
-- Responsive
-- Improve UI/UX
 - Improve AI to target adjacent to shipHit
 - Add 2 human player switch play option
+- Add online multiplayer
+- Add visit stats database
+- Add username
+- Add screen/device shake
+- Allow to play again after a hit
+- Show sunk ship
+- Show adj cells which don't need to be hit anymore
 
 ## Webpack for web
 
