@@ -36,7 +36,7 @@ class Player {
         this.plays.push(coordinates);
         Utils.removeObjFromArray(this.remainingPlays, coordinates);
         const hit = oponent.board.receiveAttack(coordinates);
-        if (hit && oponent.board.gameOver() || true) {
+        if (hit && oponent.board.gameOver()) {
             const dialog = document.getElementById("dialog-game-over");
             dialog.showModal();
         }
