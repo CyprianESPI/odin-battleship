@@ -13,6 +13,7 @@ class GameBoard {
         waterHit: 1,
         ship: 2,
         shipHit: 3,
+        waterEmpty: 4,
     };
 
     constructor(size) {
@@ -27,6 +28,32 @@ class GameBoard {
             }
             this.grid.push(row);
         }
+    }
+
+    isOutOfBounds(row, col) {
+        if (row < 0 || row >= this.size
+            || col < 0 || col >= this.size)
+            return true;
+        else
+            return false;
+    }
+
+    getAdjcentCoords(coordinates) {
+        const adjacentCoordsArray = [];
+        for (let coord of coordinates) {
+            adjacentCoordsArray.push([coord[0] + 1, coord[1] + 1]);
+            adjacentCoordsArray.push([coord[0] + 1, coord[1] + 0]);
+            adjacentCoordsArray.push([coord[0] + 1, coord[1] - 1]);
+            adjacentCoordsArray.push([coord[0] + 0, coord[1] + 1]);
+            adjacentCoordsArray.push([coord[0] + 0, coord[1] + 0]);
+            adjacentCoordsArray.push([coord[0] + 0, coord[1] - 1]);
+            adjacentCoordsArray.push([coord[0] - 1, coord[1] + 1]);
+            adjacentCoordsArray.push([coord[0] - 1, coord[1] + 0]);
+            adjacentCoordsArray.push([coord[0] - 1, coord[1] - 1]);
+        }
+
+        // TODO: remove duplicates and remove out of bounds
+        return adjacentCoordsArray;
     }
 
     isMoveAllowed(ship, trans) {
@@ -111,8 +138,7 @@ class GameBoard {
             const row = position[1] + i * direction[1];
             const col = position[0] + i * direction[0];
 
-            if (row < 0 || row >= this.size
-                || col < 0 || col >= this.size) {
+            if (this.isOutOfBounds(row, col)) {
                 // Do not allow ships to go oustide of board
                 return false;
             } else if (this.grid[row][col] == GameBoard.CellStatus.ship) {
@@ -147,6 +173,8 @@ class GameBoard {
 
     // Returns true if a ship is hit
     receiveAttack(coordinates) {
+        let sunkShip = null;
+        let hit = false;
         const row = coordinates[0];
         const col = coordinates[1];
         // Check if we hit a ship
@@ -156,14 +184,39 @@ class GameBoard {
                     && col == coord[1]) {
                     ship.hit();
                     this.grid[row][col] = GameBoard.CellStatus.shipHit;
-                    return true;
+                    hit = true;
+                    if (ship.isSunk()) {
+                        sunkShip = ship;
+                    }
+                    break;
+                }
+            }
+            if (hit) {
+                break;
+            }
+        }
+
+        // Display empty circle around ship
+        if (sunkShip !== null) {
+            const adjCoords = this.getAdjcentCoords(sunkShip.shipCoordinates);
+            for (let coord of adjCoords) {
+                const row = coord[0];
+                const col = coord[1];
+                if (this.isOutOfBounds(row, col)) {
+                    continue;
+                }
+                if (this.grid[row][col] === GameBoard.CellStatus.water) {
+                    this.grid[row][col] = GameBoard.CellStatus.waterEmpty;
                 }
             }
         }
 
         // Ship not hit...
-        this.grid[row][col] = GameBoard.CellStatus.waterHit;
-        return false;
+        if (!hit) {
+            this.grid[row][col] = GameBoard.CellStatus.waterHit;
+        }
+
+        return hit;
     }
 
     gameOver() {
@@ -253,6 +306,9 @@ class GameBoard {
                     }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
                     cell.className = "cell ship hit";
+                    cell.appendChild(dot);
+                } else if (this.grid[row][col] === GameBoard.CellStatus.waterEmpty) {
+                    cell.className = "cell water empty";
                     cell.appendChild(dot);
                 }
                 board.appendChild(cell);

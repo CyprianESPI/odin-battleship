@@ -225,6 +225,11 @@ button.enabled {
     background-color: var(--clr-primary-300);
 }
 
+.empty>* {
+    background-color: transparent;
+    border: 5px solid var(--clr-primary-900);
+}
+
 .miss>* {
     background-color: var(--clr-primary-900);
 }
