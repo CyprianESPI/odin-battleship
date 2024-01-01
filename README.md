@@ -16,7 +16,6 @@ https://CyprianESPI.github.io/odin-battleship/
 - Add visit stats database
 - Add username
 - Add screen/device shake
-- Add delay between computer moves
 - Show sunk ship
 - Show adj cells which don't need to be hit anymore
 

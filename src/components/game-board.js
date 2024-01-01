@@ -210,7 +210,7 @@ class GameBoard {
                 this.render(parent, game);
             });
         } else {
-            btn.className = "material-symbols-outlined move-btn disabled";
+            btn.className = "material-symbols-outlined move-btn hidden";
         }
 
         return btn;

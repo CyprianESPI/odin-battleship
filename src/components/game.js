@@ -19,21 +19,44 @@ class Game {
         this.render();
     }
 
+
+    computerPlayDelayed() {
+        const delayMs = 2000;
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.computer.playRandom(this.human));
+            }, delayMs);
+        });
+    }
+
+    computerPlay() {
+        this.humanBoard.classList.add('disabled');
+        this.computerBoard.classList.add('disabled');
+        console.log("computerPlay", this.humanBoard, this.computerBoard);
+        const delayMs = 1000;
+        setTimeout(() => {
+            const hit = this.computer.playRandom(this.human);
+            console.log("setTimeout", hit);
+            if (hit) {
+                this.computerPlay();
+            }
+            this.humanBoard.classList.remove('disabled');
+            this.computerBoard.classList.remove('disabled');
+            this.render();
+        }, delayMs);
+    }
+
     play(coordinates) {
         // When the human plays, the computer plays right after
         const hit = this.human.play(this.computer, coordinates);
+        this.render();
         // If human hit, do not let the computer play
         if (hit) {
-            this.render();
             return;
         }
 
         // If computer hit, do not let the human play
-        while (this.computer.playRandom(this.human)) {
-            this.render();
-        }
-
-        this.render();
+        this.computerPlay();
 
         // This should happen after the render as it's a block call
         if (this.computer.board.gameOver()) {

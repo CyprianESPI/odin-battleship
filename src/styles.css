@@ -74,7 +74,7 @@ button {
     color: white;
 }
 
-.enabled {
+button.enabled {
     cursor: pointer;
 }
 
@@ -109,7 +109,7 @@ button {
     }
 }
 
-.disabled {
+.hidden {
     display: none;
 }
 
@@ -145,6 +145,16 @@ button {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
+}
+
+.board-stack.disabled {
+    filter: brightness(0.666);
+    pointer-events: none;
+
+    /* Ensure overlays are disabled too */
+    * {
+        pointer-events: none;
+    }
 }
 
 /* set childs on same grid area to ensure they overlap */
@@ -214,10 +224,6 @@ button {
 
 .hit>* {
     background-color: var(--clr-A400);
-}
-
-#board-human>:first-child {
-    filter: brightness(0.666);
 }
 
 /* Hide computer's ships */
