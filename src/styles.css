@@ -86,7 +86,6 @@ button.enabled {
     width: 6rem;
     height: 3rem;
     border-radius: 3rem;
-
 }
 
 .move-btn {
@@ -258,4 +257,24 @@ button.enabled {
     color: white;
     border-radius: var(--br);
     padding: 5px;
+}
+
+
+dialog {
+    /* Center its content */
+    align-items: center;
+
+    border-radius: var(--br);
+
+    /* Center the dialog in the middle of the page*/
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    >* {
+        margin: var(--br);
+    }
 }

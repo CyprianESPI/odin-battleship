@@ -32,12 +32,12 @@ class Game {
     computerPlay() {
         this.humanBoard.classList.add('disabled');
         this.computerBoard.classList.add('disabled');
-        console.log("computerPlay", this.humanBoard, this.computerBoard);
-        const delayMs = 1;
+        const delayMs = 500;
         setTimeout(() => {
             const hit = this.computer.playRandom(this.human);
             console.log("setTimeout", hit);
             if (hit) {
+                // Recursive call
                 this.computerPlay();
             } else {
                 this.humanBoard.classList.remove('disabled');
@@ -52,20 +52,8 @@ class Game {
         const hit = this.human.play(this.computer, coordinates);
         this.render();
         // If human hit, do not let the computer play
-        if (hit) {
-            return;
-        }
-
-        // If computer hit, do not let the human play
-        this.computerPlay();
-
-        // This should happen after the render as it's a block call
-        if (this.computer.board.gameOver()) {
-            alert("You win!\nPlay again?");
-            this.newGame();
-        } else if (this.human.board.gameOver()) {
-            alert("You lose...\nPlay again?");
-            this.newGame();
+        if (!hit) {
+            this.computerPlay();
         }
     }
 

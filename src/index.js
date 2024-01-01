@@ -15,10 +15,13 @@ function main() {
     const boardComputer = document.getElementById("board-computer");
     const game = new Game(boardHuman, boardComputer);
 
-    const restart = document.getElementById("restart");
-    restart.addEventListener('click', (e) => {
+    const restartBtnHeader = document.getElementById("restart-btn-header");
+    const restartBtnModal = document.getElementById("restart-btn-modal");
+    [restartBtnHeader, restartBtnModal].forEach((btn) => btn.addEventListener('click', () => {
         game.newGame();
-    });
+        const dialog = document.getElementById("dialog-game-over");
+        dialog.close();
+    }));
 
     console.log("Initialized!");
 }
