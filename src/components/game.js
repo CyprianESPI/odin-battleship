@@ -39,9 +39,10 @@ class Game {
             console.log("setTimeout", hit);
             if (hit) {
                 this.computerPlay();
+            } else {
+                this.humanBoard.classList.remove('disabled');
+                this.computerBoard.classList.remove('disabled');
             }
-            this.humanBoard.classList.remove('disabled');
-            this.computerBoard.classList.remove('disabled');
             this.render();
         }, delayMs);
     }
