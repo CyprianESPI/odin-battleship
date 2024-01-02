@@ -11,7 +11,7 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Features
 
 - Hitmarler: red circle > red x
-- Improve AI to target adjacent to shipHit
+- Improve AI to assume boat direction when 2 adj hits are landed
 - Add 2 human player switch play option
 - Add online multiplayer
 - Add visit stats database

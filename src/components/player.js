@@ -64,7 +64,31 @@ class Player {
 
     playRandom(oponent) {
         const coordinates = this.remainingPlays.pop();
-        return this.play(oponent, coordinates);
+        const hit = this.play(oponent, coordinates);
+        // Hard AI > target adjacent cells after a hit
+        if (hit) {
+            const targets = [];
+            for (let i = this.remainingPlays.length - 1; i >= 0; i--) {
+                const row = this.remainingPlays[i][0];
+                const col = this.remainingPlays[i][1];
+
+                // Only target right next to the ship
+                const sameCol = Math.abs(row - coordinates[0]) === 1
+                    && Math.abs(col - coordinates[1]) === 0;
+                const sameRow = Math.abs(row - coordinates[0]) === 0
+                    && Math.abs(col - coordinates[1]) === 1;
+                if (sameCol || sameRow) {
+                    this.remainingPlays.splice(i, 1);
+                    targets.push([row, col]);
+                }
+            }
+
+            targets.forEach((target) => {
+                this.remainingPlays.push(target);
+            });
+        }
+
+        return hit;
     }
 
     shuffleShips() {
