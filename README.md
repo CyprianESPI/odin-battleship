@@ -6,7 +6,6 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- Remove sunk ship adjcent hits from computer
 - Align ship overlay
 
 ### Features

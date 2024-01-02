@@ -70,16 +70,6 @@ class Game {
             .catch(error => console.error('Error establishing connection:', error));
     }
 
-
-    computerPlayDelayed() {
-        const delayMs = 2000;
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(this.computer.playRandom(this.human));
-            }, delayMs);
-        });
-    }
-
     computerPlay() {
         this.humanBoard.classList.add('disabled');
         this.computerBoard.classList.add('disabled');

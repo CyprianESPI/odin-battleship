@@ -41,8 +41,20 @@ class Player {
 
     play(oponent, coordinates) {
         this.plays.push(coordinates);
-        Utils.removeObjFromArray(this.remainingPlays, coordinates);
+        // Must happen before updating list of plays
         const hit = oponent.board.receiveAttack(coordinates);
+
+        // Use grid status to update remaining plays
+        for (let i = this.remainingPlays.length - 1; i >= 0; i--) {
+            const row = this.remainingPlays[i][0];
+            const col = this.remainingPlays[i][1];
+            if (oponent.board.grid[row][col] === GameBoard.CellStatus.waterHit
+                || oponent.board.grid[row][col] === GameBoard.CellStatus.waterEmpty
+                || oponent.board.grid[row][col] === GameBoard.CellStatus.shipHit) {
+                this.remainingPlays.splice(i, 1);
+            }
+        }
+
         if (hit && oponent.board.gameOver()) {
             const dialog = document.getElementById("dialog-game-over");
             dialog.showModal();
