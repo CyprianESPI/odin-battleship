@@ -78,11 +78,13 @@ class Game {
             const hit = this.computer.playRandom(this.human);
             console.log("setTimeout", hit);
             if (hit) {
+                this.humanBoard.classList.add('shake');
                 // Recursive call
                 this.computerPlay();
             } else {
                 this.humanBoard.classList.remove('disabled');
                 this.computerBoard.classList.remove('disabled');
+                this.humanBoard.classList.remove('shake');
             }
             this.render();
         }, delayMs);
@@ -95,6 +97,11 @@ class Game {
         // If human hit, do not let the computer play
         if (!hit) {
             this.computerPlay();
+        } else {
+            this.computerBoard.classList.add('shake');
+            setTimeout(() => {
+                this.computerBoard.classList.remove('shake');
+            }, 500)
         }
     }
 
