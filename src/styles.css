@@ -253,14 +253,14 @@ button.enabled {
 #oponent>h2 {
     background-color: var(--clr-A700);
     color: white;
-    border-radius: var(--br);
+    border-radius: var(--br) var(--br) 0 0;
     padding: 5px;
 }
 
 #you>h2 {
     background-color: var(--clr-primary-900);
     color: white;
-    border-radius: var(--br);
+    border-radius: var(--br) var(--br) 0 0;
     padding: 5px;
 }
 
