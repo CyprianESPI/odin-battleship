@@ -26,7 +26,7 @@
     </header>
     <main>
         <div id="oponent" class="player-container">
-            <h2>Oponent's fleet</h2>
+            <h2 id="oponent-fleet-header">Oponent</h2>
             <div class="board-container">
                 <!-- Row 1 -->
                 <div></div>
@@ -62,7 +62,7 @@
         </div>
 
         <div id="you" class="player-container">
-            <h2>Your fleet</h2>
+            <h2 id="your-fleet-header">You</h2>
 
             <div class="board-container">
                 <!-- Row 1 -->
@@ -104,6 +104,14 @@
             <span class="material-symbols-outlined">restart_alt</span>
             Restart
         </button>
+    </dialog>
+    <dialog id="dialog-user-name">
+        <h2>Welcome</h2>
+        <form action="./index.html" method="get">
+            <input type="text" name="user-name" id="user-name" placeholder="Jack Sparrow" required />
+            <br>
+            <input type="submit" value="Play" />
+        </form>
     </dialog>
 </body>
 

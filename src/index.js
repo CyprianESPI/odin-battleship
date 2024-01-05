@@ -9,7 +9,12 @@ function main() {
 
     // Get url param location
     const params = new URLSearchParams(document.location.search);
-    console.log(params);
+    console.debug(params);
+    const userName = params.get("user-name");
+    if (userName === null || userName === "") {
+        const dialog = document.getElementById("dialog-user-name");
+        dialog.showModal();
+    }
 
     const boardHuman = document.getElementById("board-human");
     const boardComputer = document.getElementById("board-computer");
