@@ -268,7 +268,9 @@ button.enabled {
 dialog {
     /* Center its content */
     align-items: center;
+    display: grid;
 
+    padding: var(--br);
     border-radius: var(--br);
 
     /* Center the dialog in the middle of the page*/
