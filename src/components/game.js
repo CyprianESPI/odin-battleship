@@ -4,12 +4,11 @@ class Game {
     constructor(humanBoard, computerBoard) {
         this.humanBoard = humanBoard;
         this.computerBoard = computerBoard;
-        this.newGame();
     }
 
-    newGame() {
-        this.human = new Player("You");
-        this.computer = new Player("CPU");
+    newGame(userName, oponentName) {
+        this.human = new Player(userName);
+        this.computer = new Player(oponentName);
         this.players = [this.human, this.computer];
         for (let p of this.players) {
             p.shuffleShips();

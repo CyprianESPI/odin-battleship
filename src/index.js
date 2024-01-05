@@ -19,11 +19,14 @@ function main() {
     const boardHuman = document.getElementById("board-human");
     const boardComputer = document.getElementById("board-computer");
     const game = new Game(boardHuman, boardComputer);
+    game.newGame(userName, "CPU");
+    document.getElementById("oponent-fleet-header").innerText = "CPU";
+    document.getElementById("your-fleet-header").innerText = userName ?? "You";
 
     const restartBtnHeader = document.getElementById("restart-btn-header");
     const restartBtnModal = document.getElementById("restart-btn-modal");
     [restartBtnHeader, restartBtnModal].forEach((btn) => btn.addEventListener('click', () => {
-        game.newGame();
+        game.newGame(userName, "CPU");
         const dialog = document.getElementById("dialog-game-over");
         dialog.close();
     }));
