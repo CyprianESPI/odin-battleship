@@ -17,7 +17,6 @@ https://CyprianESPI.github.io/odin-battleship/
 - Add online multiplayer
 - Add visit stats database
 - Add username
-- Add device shake
 
 ## Webpack for web
 
