@@ -12,7 +12,7 @@
     "id": "/odin-battleship/",
     "start_url": "/odin-battleship/",
     "display": "standalone",
-    "background_color": "#FFE9D2",
-    "theme_color": "#FFE1C4",
+    "background_color": "#2196F3",
+    "theme_color": "#0D47A1",
     "orientation": "portrait-primary"
 }
