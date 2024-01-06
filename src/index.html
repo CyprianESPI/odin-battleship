@@ -13,12 +13,26 @@
     <!-- chevron_right -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- group_add -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- group_remove-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <header>
         <h1><a href="https://www.theodinproject.com/lessons/node-path-javascript-battleship">The Odin Project |
                 Project: Battleship</a></h1>
+        <button id="add-p2-btn" class="rounded-btn enabled">
+            <span class="material-symbols-outlined">group_add</span>
+        </button>
+        <button id="remove-p2-btn" class="rounded-btn disabled">
+            <span class="material-symbols-outlined">group_remove</span>
+        </button>
         <button id="restart-btn-header" class="rounded-btn enabled">
             <span class="material-symbols-outlined">restart_alt</span>
             Restart
@@ -111,10 +125,20 @@
             Restart
         </button>
     </dialog>
-    <dialog id="dialog-user-name">
+    <dialog id="dialog-solo">
+        <h2>Welcome</h2>
+        <form id="form-solo" action="./index.html" method="get">
+            <input type="text" name="p1" id="p1-solo" placeholder="Jack Sparrow" required />
+            <br>
+            <input type="submit" value="Play" />
+        </form>
+    </dialog>
+    <dialog id="dialog-multi">
         <h2>Welcome</h2>
         <form action="./index.html" method="get">
-            <input type="text" name="user-name" id="user-name" placeholder="Jack Sparrow" required />
+            <input type="text" name="p1" id="p1-multi" placeholder="Jack Sparrow" required />
+            <br>
+            <input type="text" name="p2" id="p2-multi" placeholder="Hector Barbossa" required />
             <br>
             <input type="submit" value="Play" />
         </form>
