@@ -11,6 +11,7 @@ class Player {
     };
 
     constructor(name) {
+        this.wins = 0;
         this.name = name;
         // TODO: add multi
         //this.peerConnection = new RTCPeerConnection(Player.peerConnectionConfig);
@@ -56,8 +57,7 @@ class Player {
         }
 
         if (hit && oponent.board.gameOver()) {
-            const dialog = document.getElementById("dialog-game-over");
-            dialog.showModal();
+            this.wins++;
         }
         return hit;
     }

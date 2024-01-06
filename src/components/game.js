@@ -1,118 +1,147 @@
 import Player from "./player";
 
 class Game {
-    constructor(humanBoard, computerBoard) {
-        this.humanBoard = humanBoard;
-        this.computerBoard = computerBoard;
-        this.newGame();
+    constructor(p1Board, p2Board) {
+        this.p1Board = p1Board;
+        this.p2Board = p2Board;
     }
 
-    newGame() {
-        this.human = new Player("You");
-        this.computer = new Player("CPU");
-        this.players = [this.human, this.computer];
+    newGame(p1Name, p1Wins, p2Name, p2Wins) {
+        this.p1 = new Player(p1Name, p1Wins);
+        this.p2 = new Player(p2Name, p2Wins);
+        this.players = [this.p1, this.p2];
         for (let p of this.players) {
             p.shuffleShips();
         }
         // Only allow to click on computer's board
-        this.computer.board.setEnabled(true);
+        this.p2.board.setEnabled(true);
         this.render();
         // TODO: add multi
         //this.newMutiplayerGameOnline();
     }
 
-    // Mutiplayer chat-gpt powered :)
-    newMutiplayerGameOnline() {
-        const p1 = this.human;
-        const p2 = this.computer;
-        // Set up event handlers for ICE candidates and data channel
-        p1.peerConnection.onicecandidate = event => {
-            if (event.candidate) {
-                p2.peerConnection.addIceCandidate(event.candidate);
-            }
-        };
-        p2.peerConnection.onicecandidate = event => {
-            if (event.candidate) {
-                p1.peerConnection.addIceCandidate(event.candidate);
-            }
-        };
-        // Create data channel
-        const dataChannel = p1.peerConnection.createDataChannel('dataChannel');
-        dataChannel.onopen = () => {
-            console.log('Data channel opened!');
-            dataChannel.send('Hello from human!');
-        };
+    newMultiplayerGame(p1Name, p1Wins, p2Name, p2Wins) {
+        this.isMultiplayer = true;
+        this.p1 = new Player(p1Name, p1Wins);
+        this.p2 = new Player(p2Name, p2Wins);
+        this.players = [this.p1, this.p2];
+        this.currentPlayer = this.p1;
+        for (let p of this.players) {
+            p.shuffleShips();
+        }
+        // Only allow to click on computer's board
+        this.p2.board.setEnabled(true);
+        this.render();
+    }
 
-        dataChannel.onmessage = event => {
-            console.log('Received message:', event.data);
-        };
+    switchPlayer() {
+        for (let p of this.players) {
+            p.board.setEnabled(!p.board.enabled);
+        }
+        this.currentPlayer = this.currentPlayer === this.p1 ? this.p2 : this.p1;
+        this.render();
+        setTimeout(() => {
+            this.p1Board.classList.add("blurred");
+            this.p2Board.classList.add("blurred");
+            setTimeout(() => {
+                alert("It's a miss! Press ok to swap");
+                if (this.currentPlayer === this.p1) {
+                    this.p1Board.classList.remove("board-hidden");
+                    this.p2Board.classList.add("board-hidden");
+                } else {
+                    this.p1Board.classList.add("board-hidden");
+                    this.p2Board.classList.remove("board-hidden");
+                }
 
-        p2.peerConnection.ondatachannel = event => {
-            event.channel.onmessage = event => {
-                console.log(event);
-                console.log('Received message:', event.data);
-            };
-
-            event.channel.onopen = () => {
-                console.log(event);
-                console.log('Data channel opened!');
-                event.channel.send('Hello from computer!');
-            };
-        };
-
-        // Establish connection
-        p1.peerConnection.createOffer()
-            .then(offer => p1.peerConnection.setLocalDescription(offer))
-            .then(() => p2.peerConnection.setRemoteDescription(p1.peerConnection.localDescription))
-            .then(() => p2.peerConnection.createAnswer())
-            .then(answer => p2.peerConnection.setLocalDescription(answer))
-            .then(() => p1.peerConnection.setRemoteDescription(p2.peerConnection.localDescription))
-            .catch(error => console.error('Error establishing connection:', error));
+                this.p1Board.classList.remove("blurred");
+                this.p2Board.classList.remove("blurred");
+            }, 500);
+        }, 100);
     }
 
     computerPlay() {
-        this.humanBoard.classList.add('disabled');
-        this.computerBoard.classList.add('disabled');
+        this.p1Board.classList.add('disabled');
+        this.p2Board.classList.add('disabled');
         const delayMs = 500;
         setTimeout(() => {
-            const hit = this.computer.playRandom(this.human);
+            const hit = this.computer.playRandom(this.p1);
             console.log("setTimeout", hit);
             if (hit) {
                 navigator.vibrate(200);
-                this.humanBoard.classList.add('shake');
+                this.p1Board.classList.add('shake');
                 setTimeout(() => {
-                    this.humanBoard.classList.remove('shake')
+                    this.p1Board.classList.remove('shake')
                 }, 200);
+                this.checkGameOver();
                 // Recursive call
                 this.computerPlay();
             } else {
-                this.humanBoard.classList.remove('disabled');
-                this.computerBoard.classList.remove('disabled');
-                this.humanBoard.classList.remove('shake');
+                this.p1Board.classList.remove('disabled');
+                this.p2Board.classList.remove('disabled');
+                this.p1Board.classList.remove('shake');
             }
             this.render();
         }, delayMs);
     }
 
     play(coordinates) {
-        // When the human plays, the computer plays right after
-        const hit = this.human.play(this.computer, coordinates);
+        // Multiplayer game
+        if (this.isMultiplayer) {
+            console.log("multi", coordinates);
+            const oponent = this.currentPlayer === this.p1 ? this.p2 : this.p1;
+            const oponentBoard = this.currentPlayer === this.p1 ? this.p2Board : this.p1Board;
+            const hit = this.currentPlayer.play(oponent, coordinates);
+            this.render();
+            if (hit) {
+                navigator.vibrate(200);
+                oponentBoard.classList.add('shake');
+                setTimeout(() => {
+                    oponentBoard.classList.remove('shake');
+                }, 200);
+                this.checkGameOver();
+            } else {
+                this.switchPlayer();
+            }
+            return;
+        }
+
+        // Solo game
+        // When player1 plays, the computer plays right after
+        const hit = this.p1.play(this.p2, coordinates);
         this.render();
-        // If human hit, do not let the computer play
+        // If player1 hit, do not let the computer play
         if (!hit) {
             this.computerPlay();
         } else {
             navigator.vibrate(200);
-            this.computerBoard.classList.add('shake');
+            this.p2Board.classList.add('shake');
             setTimeout(() => {
-                this.computerBoard.classList.remove('shake');
+                this.p2Board.classList.remove('shake');
             }, 200);
+            this.checkGameOver();
         }
     }
 
+    checkGameOver() {
+        const dialog = document.getElementById("dialog-game-over");
+        // Update dialog content
+        if (this.p2.board.gameOver()) {
+            document.getElementById("game-over-result").innerText = "You win!";
+        } else if (this.p1.board.gameOver()) {
+            document.getElementById("game-over-result").innerText = "You lose...";
+        } else {
+            return;
+        }
+        document.getElementById("game-over-name-cpu").innerText = this.p2.name;
+        document.getElementById("game-over-name-you").innerText = this.p1.name;
+        document.getElementById("game-over-score-cpu").innerText = this.p2.wins;
+        document.getElementById("game-over-score-you").innerText = this.p1.wins;
+        dialog.showModal();
+    }
+
     render() {
-        this.human.board.render(this.humanBoard, this);
-        this.computer.board.render(this.computerBoard, this);
+        this.p1.board.render(this.p1Board, this);
+        this.p2.board.render(this.p2Board, this);
     }
 }
 export default Game;

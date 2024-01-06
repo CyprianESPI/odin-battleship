@@ -78,6 +78,11 @@ button.enabled {
     cursor: pointer;
 }
 
+.disabled {
+    filter: brightness(0.666);
+    pointer-events: none;
+}
+
 .rounded-btn {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
@@ -146,9 +151,11 @@ button.enabled {
     grid-template-columns: 1fr;
 }
 
+.blurred {
+    filter: blur(1.5rem);
+}
+
 .board-stack.disabled {
-    filter: brightness(0.666);
-    pointer-events: none;
 
     /* Ensure overlays are disabled too */
     * {
@@ -239,12 +246,12 @@ button.enabled {
 }
 
 /* Hide computer's ships */
-#board-computer>:first-child>* {
+.board-hidden>:first-child>* {
     background-color: var(--clr-primary-300);
 }
 
 /* Hide computer's ships overlay */
-#board-computer>:nth-child(2) {
+.board-hidden>:nth-child(2) {
     :not(.sunk) {
         display: none;
     }
@@ -253,14 +260,14 @@ button.enabled {
 #oponent>h2 {
     background-color: var(--clr-A700);
     color: white;
-    border-radius: var(--br);
+    border-radius: var(--br) var(--br) 0 0;
     padding: 5px;
 }
 
 #you>h2 {
     background-color: var(--clr-primary-900);
     color: white;
-    border-radius: var(--br);
+    border-radius: var(--br) var(--br) 0 0;
     padding: 5px;
 }
 
@@ -269,6 +276,9 @@ dialog {
     /* Center its content */
     align-items: center;
 
+    /* Cannot give a display value otherwise the dialog is always visible */
+
+    padding: var(--br);
     border-radius: var(--br);
 
     /* Center the dialog in the middle of the page*/

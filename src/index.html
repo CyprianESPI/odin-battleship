@@ -13,12 +13,26 @@
     <!-- chevron_right -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- group_add -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- group_remove-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <header>
         <h1><a href="https://www.theodinproject.com/lessons/node-path-javascript-battleship">The Odin Project |
                 Project: Battleship</a></h1>
+        <button id="add-p2-btn" class="rounded-btn enabled">
+            <span class="material-symbols-outlined">group_add</span>
+        </button>
+        <button id="remove-p2-btn" class="rounded-btn disabled">
+            <span class="material-symbols-outlined">group_remove</span>
+        </button>
         <button id="restart-btn-header" class="rounded-btn enabled">
             <span class="material-symbols-outlined">restart_alt</span>
             Restart
@@ -26,7 +40,7 @@
     </header>
     <main>
         <div id="oponent" class="player-container">
-            <h2>Oponent's fleet</h2>
+            <h2 id="oponent-fleet-header">Oponent</h2>
             <div class="board-container">
                 <!-- Row 1 -->
                 <div></div>
@@ -56,13 +70,13 @@
                     <h2>I</h2>
                     <h2>J</h2>
                 </div>
-                <div id="board-computer" class="board-stack">
+                <div id="board-computer" class="board-stack board-hidden">
                 </div>
             </div>
         </div>
 
         <div id="you" class="player-container">
-            <h2>Your fleet</h2>
+            <h2 id="your-fleet-header">You</h2>
 
             <div class="board-container">
                 <!-- Row 1 -->
@@ -99,11 +113,35 @@
         </div>
     </main>
     <dialog id="dialog-game-over">
-        <h2>Game over</h2>
+        <h2 id="game-over-result">You win</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+            <h3 id="game-over-name-cpu">CPU</h3>
+            <h3 id="game-over-name-you">You</h3>
+            <h4 id="game-over-score-cpu">0</h4>
+            <h4 id="game-over-score-you">1</h4>
+        </div>
         <button id="restart-btn-modal" class="rounded-btn enabled">
             <span class="material-symbols-outlined">restart_alt</span>
             Restart
         </button>
+    </dialog>
+    <dialog id="dialog-solo">
+        <h2>Welcome</h2>
+        <form id="form-solo" action="./index.html" method="get">
+            <input type="text" name="p1" id="p1-solo" placeholder="Jack Sparrow" required />
+            <br>
+            <input type="submit" value="Play" />
+        </form>
+    </dialog>
+    <dialog id="dialog-multi">
+        <h2>Welcome</h2>
+        <form action="./index.html" method="get">
+            <input type="text" name="p1" id="p1-multi" placeholder="Jack Sparrow" required />
+            <br>
+            <input type="text" name="p2" id="p2-multi" placeholder="Hector Barbossa" required />
+            <br>
+            <input type="submit" value="Play" />
+        </form>
     </dialog>
 </body>
 
