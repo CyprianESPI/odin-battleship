@@ -13,7 +13,6 @@ https://CyprianESPI.github.io/odin-battleship/
 
 - Improve UI of arrival screen
 - Hitmarler: red circle > red x (use svg)
-- Improve AI to assume boat direction when 2 adj hits are landed
 - Add online multiplayer
 - Add visit stats database
 

@@ -16,7 +16,12 @@ class Game {
     newGame(gameType, p1Name, p1Wins, p2Name, p2Wins) {
         this.type = gameType;
         this.p1 = new Player(p1Name, p1Wins);
-        this.p2 = new Player(p2Name, p2Wins);
+        if (gameType === Game.Type.solo) {
+            this.p2 = new Player("CPU", p2Wins);
+        } else {
+            this.p2 = new Player(p2Name, p2Wins);
+        }
+
         this.players = [this.p1, this.p2];
         this.currentPlayer = this.p1;
         for (let p of this.players) {
