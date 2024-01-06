@@ -6,9 +6,9 @@ class Game {
         this.computerBoard = computerBoard;
     }
 
-    newGame(userName, oponentName) {
-        this.human = new Player(userName);
-        this.computer = new Player(oponentName);
+    newGame(userName, userWins, oponentName, oponentWins) {
+        this.human = new Player(userName, userWins);
+        this.computer = new Player(oponentName, oponentWins);
         this.players = [this.human, this.computer];
         for (let p of this.players) {
             p.shuffleShips();
@@ -82,6 +82,7 @@ class Game {
                 setTimeout(() => {
                     this.humanBoard.classList.remove('shake')
                 }, 200);
+                this.checkGameOver();
                 // Recursive call
                 this.computerPlay();
             } else {
@@ -106,7 +107,25 @@ class Game {
             setTimeout(() => {
                 this.computerBoard.classList.remove('shake');
             }, 200);
+            this.checkGameOver();
         }
+    }
+
+    checkGameOver() {
+        const dialog = document.getElementById("dialog-game-over");
+        // Update dialog content
+        if (this.computer.board.gameOver()) {
+            document.getElementById("game-over-result").innerText = "You win!";
+        } else if (this.human.board.gameOver()) {
+            document.getElementById("game-over-result").innerText = "You lose...";
+        } else {
+            return;
+        }
+        document.getElementById("game-over-name-cpu").innerText = this.computer.name;
+        document.getElementById("game-over-name-you").innerText = this.human.name;
+        document.getElementById("game-over-score-cpu").innerText = this.computer.wins;
+        document.getElementById("game-over-score-you").innerText = this.human.wins;
+        dialog.showModal();
     }
 
     render() {

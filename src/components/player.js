@@ -58,8 +58,6 @@ class Player {
 
         if (hit && oponent.board.gameOver()) {
             this.wins++;
-            const dialog = document.getElementById("dialog-game-over");
-            dialog.showModal();
         }
         return hit;
     }
