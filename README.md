@@ -6,18 +6,16 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Bugfixes
 
-- Align ship overlay
+- Align ship overlay for mobile
 - Fix UT
 
 ### Features
 
+- Improve UI of arrival screen
 - Hitmarler: red circle > red x (use svg)
-- Make a nice game over screen
 - Improve AI to assume boat direction when 2 adj hits are landed
-- Add 2 human player switch play option
 - Add online multiplayer
 - Add visit stats database
-- Add username
 
 ## Webpack for web
 
