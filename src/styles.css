@@ -290,6 +290,10 @@ dialog {
     transform: translateX(-50%) translateY(-50%);
 
     >* {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        gap: var(--br);
         margin: var(--br);
     }
 }
