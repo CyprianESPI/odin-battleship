@@ -151,6 +151,10 @@ button.enabled {
     grid-template-columns: 1fr;
 }
 
+.blurred {
+    filter: blur(1.5rem);
+}
+
 .board-stack.disabled {
 
     /* Ensure overlays are disabled too */

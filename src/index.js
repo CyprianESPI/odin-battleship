@@ -47,15 +47,15 @@ function main() {
         });
 
         // Create two player local game
-        game.newGame(p1Name, 0, p2Name, 0);
+        game.newMultiplayerGame(p1Name, 0, p2Name, 0);
     }
 
-    document.getElementById("oponent-fleet-header").innerText = game.computer.name;
-    document.getElementById("your-fleet-header").innerText = game.human.name ?? "You";
+    document.getElementById("oponent-fleet-header").innerText = game.p2.name;
+    document.getElementById("your-fleet-header").innerText = game.p1.name ?? "You";
     const restartBtnHeader = document.getElementById("restart-btn-header");
     const restartBtnModal = document.getElementById("restart-btn-modal");
     [restartBtnHeader, restartBtnModal].forEach((btn) => btn.addEventListener('click', () => {
-        game.newGame(p1Name, game.human.wins, "CPU", game.computer.wins);
+        game.newGame(p1Name, game.p1.wins, "CPU", game.p2.wins);
         const dialog = document.getElementById("dialog-game-over");
         dialog.close();
     }));
