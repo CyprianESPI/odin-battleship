@@ -76,7 +76,7 @@ class Player {
                 hitShip = ship.shipCoordinates.find((coords) => coords[0] === coordinates[0] && coords[1] === coordinates[1]);
                 if (hitShip !== undefined) {
                     hitShip = ship;
-                    shipSameRow = ship.shipCoordinates[0][0] === ship.shipCoordinates[0][1];
+                    shipSameRow = ship.shipCoordinates[0][0] === ship.shipCoordinates[1][0];
                     break;
                 }
             }
@@ -84,7 +84,6 @@ class Player {
                 console.error("hitShip not found... Check oponent", oponent);
                 return;
             }
-
             const targets = [];
             for (let i = this.remainingPlays.length - 1; i >= 0; i--) {
                 const row = this.remainingPlays[i][0];
@@ -99,7 +98,7 @@ class Player {
                     this.remainingPlays.splice(i, 1);
                     targets.push([row, col]);
                 } else if ((sameCol && !shipSameRow)
-                    || sameRow && shipSameRow) {
+                    || (sameRow && shipSameRow)) {
                     this.remainingPlays.splice(i, 1);
                     targets.push([row, col]);
                 }
@@ -109,7 +108,6 @@ class Player {
                 this.remainingPlays.push(target);
             });
         }
-
         return hit;
     }
 
