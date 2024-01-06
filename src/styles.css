@@ -246,12 +246,12 @@ button.enabled {
 }
 
 /* Hide computer's ships */
-#board-computer>:first-child>* {
+.board-hidden>:first-child>* {
     background-color: var(--clr-primary-300);
 }
 
 /* Hide computer's ships overlay */
-#board-computer>:nth-child(2) {
+.board-hidden>:nth-child(2) {
     :not(.sunk) {
         display: none;
     }

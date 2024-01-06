@@ -45,10 +45,18 @@ class Game {
             this.p2Board.classList.add("blurred");
             setTimeout(() => {
                 alert("It's a miss! Press ok to swap");
+                if (this.currentPlayer === this.p1) {
+                    this.p1Board.classList.remove("board-hidden");
+                    this.p2Board.classList.add("board-hidden");
+                } else {
+                    this.p1Board.classList.add("board-hidden");
+                    this.p2Board.classList.remove("board-hidden");
+                }
+
                 this.p1Board.classList.remove("blurred");
                 this.p2Board.classList.remove("blurred");
             }, 500);
-        }, 500);
+        }, 100);
     }
 
     computerPlay() {
