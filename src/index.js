@@ -10,6 +10,7 @@ function main() {
     const boardHuman = document.getElementById("board-human");
     const boardComputer = document.getElementById("board-computer");
     const game = new Game(boardHuman, boardComputer);
+    let gameType = Game.Type.solo;
 
     // Get url param location
     const params = new URLSearchParams(document.location.search);
@@ -34,8 +35,8 @@ function main() {
             dialog.showModal();
         });
 
-        // Create solo player game
-        game.newGame(p1Name, 0, "CPU", 0);
+        // Solo player game
+        gameType = Game.Type.solo;
 
     } else {
         addPlayer2Btn.classList.replace('enabled', 'disabled');
@@ -46,16 +47,19 @@ function main() {
             document.getElementById("form-solo").submit();
         });
 
-        // Create two player local game
-        game.newMultiplayerGame(p1Name, 0, p2Name, 0);
+        // Two player local game
+        gameType = Game.Type.multiLocal;
     }
+
+    // Start a new game
+    game.newGame(gameType, p1Name, 0, p2Name, 0);
 
     document.getElementById("oponent-fleet-header").innerText = game.p2.name;
     document.getElementById("your-fleet-header").innerText = game.p1.name ?? "You";
     const restartBtnHeader = document.getElementById("restart-btn-header");
     const restartBtnModal = document.getElementById("restart-btn-modal");
     [restartBtnHeader, restartBtnModal].forEach((btn) => btn.addEventListener('click', () => {
-        game.newGame(p1Name, game.p1.wins, "CPU", game.p2.wins);
+        game.newGame(gameType, p1Name, game.p1.wins, p2Name, game.p2.wins);
         const dialog = document.getElementById("dialog-game-over");
         dialog.close();
     }));

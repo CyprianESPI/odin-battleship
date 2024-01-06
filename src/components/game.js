@@ -1,27 +1,20 @@
 import Player from "./player";
 
 class Game {
+    static Type = {
+        solo: 0,
+        multiLocal: 1,
+        multiOnline: 2,
+    }
+
     constructor(p1Board, p2Board) {
         this.p1Board = p1Board;
         this.p2Board = p2Board;
+        this.type = Game.Type.solo;
     }
 
-    newGame(p1Name, p1Wins, p2Name, p2Wins) {
-        this.p1 = new Player(p1Name, p1Wins);
-        this.p2 = new Player(p2Name, p2Wins);
-        this.players = [this.p1, this.p2];
-        for (let p of this.players) {
-            p.shuffleShips();
-        }
-        // Only allow to click on computer's board
-        this.p2.board.setEnabled(true);
-        this.render();
-        // TODO: add multi
-        //this.newMutiplayerGameOnline();
-    }
-
-    newMultiplayerGame(p1Name, p1Wins, p2Name, p2Wins) {
-        this.isMultiplayer = true;
+    newGame(gameType, p1Name, p1Wins, p2Name, p2Wins) {
+        this.type = gameType;
         this.p1 = new Player(p1Name, p1Wins);
         this.p2 = new Player(p2Name, p2Wins);
         this.players = [this.p1, this.p2];
@@ -29,9 +22,12 @@ class Game {
         for (let p of this.players) {
             p.shuffleShips();
         }
-        // Only allow to click on computer's board
+
+        // Only allow to click on oponent's board
         this.p2.board.setEnabled(true);
         this.render();
+        // TODO: add multi
+        //this.newMutiplayerGameOnline();
     }
 
     switchPlayer() {
@@ -84,41 +80,41 @@ class Game {
         }, delayMs);
     }
 
+    getOponent() {
+        return this.currentPlayer === this.p1 ? this.p2 : this.p1;
+    }
+
+    getOponentBoard() {
+        return this.currentPlayer === this.p1 ? this.p2Board : this.p1Board;
+    }
+
     play(coordinates) {
-        // Multiplayer game
-        if (this.isMultiplayer) {
-            console.log("multi", coordinates);
-            const oponent = this.currentPlayer === this.p1 ? this.p2 : this.p1;
-            const oponentBoard = this.currentPlayer === this.p1 ? this.p2Board : this.p1Board;
-            const hit = this.currentPlayer.play(oponent, coordinates);
-            this.render();
-            if (hit) {
-                navigator.vibrate(200);
-                oponentBoard.classList.add('shake');
-                setTimeout(() => {
-                    oponentBoard.classList.remove('shake');
-                }, 200);
-                this.checkGameOver();
-            } else {
-                this.switchPlayer();
-            }
+        const oponent = this.getOponent();
+        const oponentBoard = this.getOponentBoard();
+        const hit = this.currentPlayer.play(oponent, coordinates);
+        // Render must happen now to update board state
+        this.render();
+        // Play again on hit
+        if (hit) {
+            navigator.vibrate(200);
+            oponentBoard.classList.add('shake');
+            setTimeout(() => {
+                oponentBoard.classList.remove('shake');
+            }, 200);
+            this.checkGameOver();
+            // Exit
             return;
         }
 
-        // Solo game
-        // When player1 plays, the computer plays right after
-        const hit = this.p1.play(this.p2, coordinates);
-        this.render();
-        // If player1 hit, do not let the computer play
-        if (!hit) {
-            this.computerPlay();
-        } else {
-            navigator.vibrate(200);
-            this.p2Board.classList.add('shake');
-            setTimeout(() => {
-                this.p2Board.classList.remove('shake');
-            }, 200);
-            this.checkGameOver();
+        switch (this.type) {
+            // Local Multiplayer Game
+            case Game.Type.multiLocal:
+                this.switchPlayer();
+                break;
+            // Solo game
+            case Game.Type.solo:
+                this.computerPlay();
+                break;
         }
     }
 
