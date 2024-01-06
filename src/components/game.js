@@ -60,21 +60,15 @@ class Game {
         this.p2Board.classList.add('disabled');
         const delayMs = 500;
         setTimeout(() => {
-            const hit = this.computer.playRandom(this.p1);
-            console.log("setTimeout", hit);
+            const hit = this.p2.playRandom(this.p1);
             if (hit) {
-                navigator.vibrate(200);
-                this.p1Board.classList.add('shake');
-                setTimeout(() => {
-                    this.p1Board.classList.remove('shake')
-                }, 200);
+                this.shakeBoard(this.p1Board);
                 this.checkGameOver();
                 // Recursive call
                 this.computerPlay();
             } else {
                 this.p1Board.classList.remove('disabled');
                 this.p2Board.classList.remove('disabled');
-                this.p1Board.classList.remove('shake');
             }
             this.render();
         }, delayMs);
@@ -88,6 +82,15 @@ class Game {
         return this.currentPlayer === this.p1 ? this.p2Board : this.p1Board;
     }
 
+    shakeBoard(board) {
+        const shakeTimeMs = 200;
+        navigator.vibrate(shakeTimeMs);
+        board.classList.add('shake');
+        setTimeout(() => {
+            board.classList.remove('shake');
+        }, shakeTimeMs);
+    }
+
     play(coordinates) {
         const oponent = this.getOponent();
         const oponentBoard = this.getOponentBoard();
@@ -96,11 +99,7 @@ class Game {
         this.render();
         // Play again on hit
         if (hit) {
-            navigator.vibrate(200);
-            oponentBoard.classList.add('shake');
-            setTimeout(() => {
-                oponentBoard.classList.remove('shake');
-            }, 200);
+            this.shakeBoard(oponentBoard);
             this.checkGameOver();
             // Exit
             return;
