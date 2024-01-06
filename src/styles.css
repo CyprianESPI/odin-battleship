@@ -152,7 +152,7 @@ button.enabled {
 }
 
 .blurred {
-    filter: blur(1.5rem);
+    filter: blur(10.0rem);
 }
 
 .board-stack.disabled {
