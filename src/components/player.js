@@ -67,6 +67,24 @@ class Player {
         const hit = this.play(oponent, coordinates);
         // Hard AI > target adjacent cells after a hit
         if (hit) {
+            // Get ship
+            let hitShip = undefined;
+            // if sameRow is false, it's sameCol
+            let shipSameRow = false;
+            for (let i = 0; i < oponent.ships.length; i++) {
+                const ship = oponent.ships[i];
+                hitShip = ship.shipCoordinates.find((coords) => coords[0] === coordinates[0] && coords[1] === coordinates[1]);
+                if (hitShip !== undefined) {
+                    hitShip = ship;
+                    shipSameRow = ship.shipCoordinates[0][0] === ship.shipCoordinates[0][1];
+                    break;
+                }
+            }
+            if (hitShip === undefined) {
+                console.error("hitShip not found... Check oponent", oponent);
+                return;
+            }
+
             const targets = [];
             for (let i = this.remainingPlays.length - 1; i >= 0; i--) {
                 const row = this.remainingPlays[i][0];
@@ -77,7 +95,11 @@ class Player {
                     && Math.abs(col - coordinates[1]) === 0;
                 const sameRow = Math.abs(row - coordinates[0]) === 0
                     && Math.abs(col - coordinates[1]) === 1;
-                if (sameCol || sameRow) {
+                if (hitShip.hits < 2 && (sameCol || sameRow)) {
+                    this.remainingPlays.splice(i, 1);
+                    targets.push([row, col]);
+                } else if ((sameCol && !shipSameRow)
+                    || sameRow && shipSameRow) {
                     this.remainingPlays.splice(i, 1);
                     targets.push([row, col]);
                 }
