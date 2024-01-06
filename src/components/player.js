@@ -10,8 +10,8 @@ class Player {
         ]
     };
 
-    constructor(name) {
-        this.wins = 0;
+    constructor(name, wins) {
+        this.wins = wins;
         this.name = name;
         // TODO: add multi
         //this.peerConnection = new RTCPeerConnection(Player.peerConnectionConfig);
