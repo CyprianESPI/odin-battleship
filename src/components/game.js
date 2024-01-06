@@ -20,6 +20,20 @@ class Game {
         //this.newMutiplayerGameOnline();
     }
 
+    newMultiplayerGame(p1Name, p1Wins, p2Name, p2Wins) {
+        this.isMultiplayer = true;
+        this.p1 = new Player(p1Name, p1Wins);
+        this.p2 = new Player(p2Name, p2Wins);
+        this.players = [this.p1, this.p2];
+        this.currentPlayer = this.p1;
+        for (let p of this.players) {
+            p.shuffleShips();
+        }
+        // Only allow to click on computer's board
+        this.p2.board.setEnabled(true);
+        this.render();
+    }
+
     // Mutiplayer chat-gpt powered :)
     newMutiplayerGameOnline() {
         const p1 = this.human;
@@ -95,6 +109,28 @@ class Game {
     }
 
     play(coordinates) {
+        // Multiplayer game
+        if (this.isMultiplayer) {
+            const oponent = this.currentPlayer === this.p1 ? this.p2 : this.p1;
+            const oponentBoard = this.currentPlayer === this.p1 ? this.computerBoard : this.humanBoard;
+            const hit = this.currentPlayer.play(oponent, coordinates);
+            this.render();
+            if (hit) {
+                navigator.vibrate(200);
+                oponentBoard.classList.add('shake');
+                setTimeout(() => {
+                    oponentBoard.classList.remove('shake');
+                }, 200);
+                this.checkGameOver();
+            } else {
+                // show dialog to switch sides
+
+                // switch sides on close
+            }
+            return;
+        }
+
+        // Solo game
         // When the human plays, the computer plays right after
         const hit = this.human.play(this.computer, coordinates);
         this.render();
