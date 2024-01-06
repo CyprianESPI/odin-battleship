@@ -7,14 +7,18 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Bugfixes
 
 - Align ship overlay for mobile
-- Fix UT
+- Fix UT & add to watch command
+- Fix App size to viewport on mobile/pc (no scroll required)
 
 ### Features
 
+- new logo icon
+- Add info bubble (move Odin link to there)
 - Improve UI of arrival screen
+- Improve UI of game over screen
 - Hitmarler: red circle > red x (use svg)
 - Add online multiplayer
-- Add visit stats database
+- Add visit stats database (use unit test for that)
 
 ## Webpack for web
 
@@ -70,3 +74,4 @@ Failed:
 
 - Used StackOverflow for shuffling an array, for screen shake
 - Used GoogleFonts for icons
+- PWA from https://github.com/CarsonSlovoka/twenty48/tree/gh-pages/docs
