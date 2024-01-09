@@ -32,7 +32,7 @@
 
 /* Disable mobile refresh on scroll up */
 html {
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
 }
 
 body {
@@ -233,9 +233,13 @@ button.enabled {
 }
 
 .dot {
-    border-radius: 50%;
-    width: 33%;
-    height: 33%;
+    height: 50%;
+    width: 50%;
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: contain;
 }
 
 .clickable {
@@ -249,19 +253,6 @@ button.enabled {
 .water,
 .ship {
     background-color: var(--clr-primary-300);
-}
-
-.empty>* {
-    background-color: transparent;
-    border: 5px solid var(--clr-primary-900);
-}
-
-.miss>* {
-    background-color: var(--clr-primary-900);
-}
-
-.hit>* {
-    background-color: var(--clr-A400);
 }
 
 /* Hide computer's ships */
