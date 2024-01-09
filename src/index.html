@@ -46,7 +46,7 @@
         </button>
     </header>
     <main>
-        <div id="oponent" class="player-container">
+        <div id="oponent" class="player-container card">
             <h2 id="oponent-fleet-header">Oponent</h2>
             <div class="board-container">
                 <!-- Row 1 -->
@@ -82,7 +82,7 @@
             </div>
         </div>
 
-        <div id="you" class="player-container">
+        <div id="you" class="player-container card">
             <h2 id="your-fleet-header">You</h2>
 
             <div class="board-container">
@@ -119,7 +119,7 @@
             </div>
         </div>
     </main>
-    <dialog id="dialog-game-over">
+    <dialog id="dialog-game-over" class="card">
         <h2 id="game-over-result">You win</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr;">
             <h3 id="game-over-name-cpu">CPU</h3>
@@ -132,7 +132,7 @@
             Restart
         </button>
     </dialog>
-    <dialog id="dialog-solo">
+    <dialog id="dialog-solo" class="card">
         <h2>Welcome</h2>
         <form id="form-solo" action="./index.html" method="get">
             <input type="text" name="p1" id="p1-solo" placeholder="JackSparrow007" maxlength="16" required
@@ -143,7 +143,7 @@
             </button>
         </form>
     </dialog>
-    <dialog id="dialog-multi">
+    <dialog id="dialog-multi" class="card">
         <h2>Welcome</h2>
         <form action="./index.html" method="get">
             <input type="text" name="p1" id="p1-multi" placeholder="JackSparrow007" maxlength="16" required
