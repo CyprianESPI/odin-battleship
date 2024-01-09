@@ -8,7 +8,6 @@ https://CyprianESPI.github.io/odin-battleship/
 
 - Align ship overlay for mobile
 - Fix UT & add to watch command
-- Fix App size to viewport on mobile/pc (no scroll required)
 
 ### Features
 
