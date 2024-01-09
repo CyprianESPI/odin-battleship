@@ -303,8 +303,19 @@ dialog {
 }
 
 input {
-    border: 2px solid var(--clr-A100);
+    border: 2px solid var(--clr-primary-500);
     padding: 2px;
+
+    &:focus {
+        /* remove default browser style on focus */
+        outline: none !important;
+        border-color: var(--clr-primary-500);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    &:invalid {
+        border-color: var(--clr-A700);
+    }
 }
 
 .shake {
