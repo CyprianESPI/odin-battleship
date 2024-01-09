@@ -12,8 +12,6 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Features
 
 - new logo icon
-- Add info bubble (move Odin link to there)
-- Hitmarker: red circle > red x (use svg) || use google fonts icons ? also fix the waterEmpty circle
 - Add online multiplayer
 - Add visit stats database (use unit test for that)
 - Improve performance with CLS (replace only children that changed in game board) | 74 now in lighthouse (mobile)
