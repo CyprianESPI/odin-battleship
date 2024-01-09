@@ -1,4 +1,7 @@
 import Utils from "./utils";
+import close from "../assets/close_FILL0_wght400_GRAD0_opsz24.svg";
+import radio_button_checked from "../assets/radio_button_checked_FILL0_wght400_GRAD0_opsz24.svg";
+import radio_button_unchecked from "../assets/radio_button_unchecked_FILL0_wght400_GRAD0_opsz24.svg";
 
 class GameBoard {
     static Direction = {
@@ -293,6 +296,7 @@ class GameBoard {
                     }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterHit) {
                     cell.className = "cell water miss";
+                    dot.style.backgroundImage = `url('${close}')`;
                     cell.appendChild(dot);
                 } else if (this.grid[row][col] === GameBoard.CellStatus.ship) {
                     cell.className = "cell ship";
@@ -306,9 +310,11 @@ class GameBoard {
                     }
                 } else if (this.grid[row][col] === GameBoard.CellStatus.shipHit) {
                     cell.className = "cell ship hit";
+                    dot.style.backgroundImage = `url('${radio_button_checked}')`;
                     cell.appendChild(dot);
                 } else if (this.grid[row][col] === GameBoard.CellStatus.waterEmpty) {
                     cell.className = "cell water empty";
+                    dot.style.backgroundImage = `url('${radio_button_unchecked}')`;
                     cell.appendChild(dot);
                 }
                 board.appendChild(cell);

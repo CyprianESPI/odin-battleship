@@ -28,6 +28,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
+    new HtmlWebpackInlineSVGPlugin({
+      inlineAll: true,
+    }),
   ]
 };
