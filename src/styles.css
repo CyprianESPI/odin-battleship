@@ -32,7 +32,7 @@
 
 /* Disable mobile refresh on scroll up */
 html {
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
 }
 
 body {
