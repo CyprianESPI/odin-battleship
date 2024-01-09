@@ -302,6 +302,14 @@ dialog {
     }
 }
 
+#dialog-game-over.loss {
+    background: radial-gradient(circle at top, var(--clr-A700) 0%, var(--clr-A700) 50%, var(--clr-A700) 50%, #FFFFFF 50%, #FFFFFF 50%);
+}
+
+#dialog-game-over.win {
+    background: radial-gradient(circle at top, var(--clr-primary-500) 0%, var(--clr-primary-500) 50%, var(--clr-primary-500) 50%, #FFFFFF 50%, #FFFFFF 50%);
+}
+
 input {
     border: 2px solid var(--clr-primary-500);
     padding: 2px;

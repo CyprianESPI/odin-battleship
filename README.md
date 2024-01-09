@@ -14,9 +14,7 @@ https://CyprianESPI.github.io/odin-battleship/
 
 - new logo icon
 - Add info bubble (move Odin link to there)
-- Improve UI of arrival screen
-- Improve UI of game over screen
-- Hitmarler: red circle > red x (use svg)
+- Hitmarker: red circle > red x (use svg) || use google fonts icons ?
 - Add online multiplayer
 - Add visit stats database (use unit test for that)
 

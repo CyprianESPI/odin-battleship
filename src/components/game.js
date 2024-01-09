@@ -127,8 +127,12 @@ class Game {
         // Update dialog content
         if (this.p2.board.gameOver()) {
             document.getElementById("game-over-result").innerText = "You win!";
+            dialog.classList.add("win");
+            dialog.classList.remove("loss");
         } else if (this.p1.board.gameOver()) {
             document.getElementById("game-over-result").innerText = "You lose...";
+            dialog.classList.remove("win");
+            dialog.classList.add("loss");
         } else {
             return;
         }
