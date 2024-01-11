@@ -30,12 +30,9 @@
 
 /*border: 2px solid red;*/
 
-/* Disable mobile refresh on scroll up */
-html {
-    overscroll-behavior: none;
-}
-
 body {
+    /* Disable mobile refresh on scroll up */
+    overscroll-behavior: none;
     display: grid;
     /* svh is like vh but it also accounts for top navigator search bar*/
     height: 100svh;
