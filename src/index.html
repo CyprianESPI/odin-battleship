@@ -126,16 +126,18 @@
                 Battleship</a></h2>
     </footer>
     <dialog id="dialog-game-over" class="card">
-        <h2 id="game-over-result">You win</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr;">
-            <h3 id="game-over-name-cpu">CPU</h3>
-            <h3 id="game-over-name-you">You</h3>
-            <h4 id="game-over-score-cpu">0</h4>
-            <h4 id="game-over-score-you">1</h4>
+        <div class="grid-container">
+            <h2 id="game-over-result">You win</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                <h3 id="game-over-name-cpu">CPU</h3>
+                <h3 id="game-over-name-you">You</h3>
+                <h4 id="game-over-score-cpu">0</h4>
+                <h4 id="game-over-score-you">1</h4>
+            </div>
+            <button id="restart-btn-modal" class="rounded-btn enabled">
+                <span class="material-symbols-outlined">restart_alt</span>
+            </button>
         </div>
-        <button id="restart-btn-modal" class="rounded-btn enabled">
-            <span class="material-symbols-outlined">restart_alt</span>
-        </button>
     </dialog>
     <dialog id="dialog-solo" class="card">
         <h2>Welcome</h2>

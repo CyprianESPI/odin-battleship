@@ -296,22 +296,27 @@ dialog {
     border-radius: var(--br);
 
     background-color: var(--clr-primary-900);
-    color: var(--clr-primary-100);
 
     /* Center the dialog in the middle of the page*/
-    top: 50%;
+    top: 33%;
     left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-33%);
+    -moz-transform: translateX(-50%) translateY(-33%);
+    -ms-transform: translateX(-50%) translateY(-33%);
+    transform: translateX(-50%) translateY(-33%);
 
-    >* {
+    >.grid-container {
         display: grid;
         justify-items: center;
         align-items: center;
-        gap: var(--br);
-        margin: var(--br);
+
+        >* {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            gap: var(--br);
+            margin: var(--br);
+        }
     }
 }
 
