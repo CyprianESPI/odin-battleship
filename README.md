@@ -13,7 +13,6 @@ https://CyprianESPI.github.io/odin-battleship/
 
 - new logo icon
 - Add online multiplayer
-- Add visit stats database (use unit test for that)
 - Improve performance with CLS (replace only children that changed in game board) | 74 now in lighthouse (mobile)
 
 ## Webpack for web

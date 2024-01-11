@@ -1,6 +1,25 @@
 import Game from "./components/game";
 import Styles from "./styles.css";
 
+function apiVisits(username) {
+    const url = "https://script.google.com/macros/s/AKfycbzzZp7TaHWN-agOOuNJxLEhEEOC6rFgl5LfbqU59i5DQnzcyO7LNC23D6GGvgIQn5zJ/exec";
+    fetch(`${url}?username=${username}`, {
+        method: 'GET',
+        mode: "cors", // no-cors, *cors, same-origin);
+        // options here, like the method (GET, POST, etc.) and maybe headers for authentication (this will depend on what the AlphaVantage API wants)
+    }).then(response => {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        const json = response.json(); // assuming they return json
+        console.log(json);
+        return json;
+    }).then(body => {
+        // do what you want with the response body here
+    });
+}
+
+
 // ================= //
 // Main
 // ================= //
@@ -22,6 +41,8 @@ function main() {
     if (p1Name === null || p1Name === "") {
         const dialog = document.getElementById("dialog-solo");
         dialog.showModal();
+    } else {
+        apiVisits(p1Name);
     }
 
     // Manage add/remove player 2
@@ -37,7 +58,6 @@ function main() {
 
         // Solo player game
         gameType = Game.Type.solo;
-
     } else {
         addPlayer2Btn.classList.replace('enabled', 'disabled');
         removePlayer2Btn.classList.replace('disabled', 'enabled');
@@ -49,6 +69,7 @@ function main() {
 
         // Two player local game
         gameType = Game.Type.multiLocal;
+        apiVisits(p2Name);
     }
 
     // Start a new game
