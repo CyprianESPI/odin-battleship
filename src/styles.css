@@ -295,6 +295,9 @@ dialog {
     padding: var(--br);
     border-radius: var(--br);
 
+    background-color: var(--clr-primary-900);
+    color: var(--clr-primary-100);
+
     /* Center the dialog in the middle of the page*/
     top: 50%;
     left: 50%;
