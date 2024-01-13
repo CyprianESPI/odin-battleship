@@ -12,9 +12,9 @@ class GameUi extends Game {
     newGame(gameType, p1Name, p1Wins, p2Name, p2Wins) {
         super.newGame(gameType, p1Name, p1Wins, p2Name, p2Wins);
 
-        // Setup Ui
-        this.p1Board.gameBoard = this.p1.board;
-        this.p2Board.gameBoard = this.p2.board;
+        // Setup Ui - TODO: check why the switch here...
+        this.p1Board.gameBoard = this.p2.board;
+        this.p2Board.gameBoard = this.p1.board;
         // Only allow to click on oponent's board
         this.p1Board.gameBoard.setEnabled(true);
         this.render();
