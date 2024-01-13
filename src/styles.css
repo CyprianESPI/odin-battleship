@@ -22,6 +22,7 @@
 }
 
 * {
+    border: 2px solid red;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -138,22 +139,26 @@ button.enabled {
 
 .player-container {
     display: grid;
-    grid-template-rows: auto 1fr;
-    margin: 10px 5% 1% 5%;
+}
+
+.board-header {
+    border-radius: var(--br);
+    width: 50%;
+    margin: auto;
+}
+
+#oponent>h2 {
+    background-color: var(--clr-A700);
+    color: var(--clr-primary-50);
+}
+
+#you>h2 {
+    background-color: var(--clr-primary-900);
+    color: var(--clr-primary-50);
 }
 
 .board-wrapper {
     position: relative;
-}
-
-.numbers,
-.letters {
-    display: flex;
-    justify-content: space-around;
-}
-
-.letters {
-    flex-flow: column;
 }
 
 /* Overlay 2 grids on top of another */
@@ -220,10 +225,9 @@ button.enabled {
 
 .board {
     display: grid;
-    grid-template-rows: repeat(10, 1fr);
-    grid-template-columns: repeat(10, 1fr);
-    gap: 5px;
-    padding: 5px;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
 }
 
 .cell {
@@ -266,21 +270,6 @@ button.enabled {
         display: none;
     }
 }
-
-#oponent>h2 {
-    background-color: var(--clr-A700);
-    color: white;
-    border-radius: var(--br) var(--br) 0 0;
-    padding: 5px;
-}
-
-#you>h2 {
-    background-color: var(--clr-primary-900);
-    color: white;
-    border-radius: var(--br) var(--br) 0 0;
-    padding: 5px;
-}
-
 
 dialog {
     /* Center its content */

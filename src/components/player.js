@@ -3,7 +3,7 @@ import Ship from "./ship";
 import Utils from "./utils";
 
 class Player {
-    static boardSize = 10;
+    static boardSize = 8;
     static peerConnectionConfig = {
         iceServers: [
             { urls: 'stun:stun.l.google.com:19302' } // Using Google's public STUN server
