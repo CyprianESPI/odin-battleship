@@ -146,21 +146,6 @@ button.enabled {
     position: relative;
 }
 
-.board-container {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    max-width: 100%;
-    max-height: 100%;
-    aspect-ratio: 1;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
-}
-
 .numbers,
 .letters {
     display: flex;
@@ -173,6 +158,15 @@ button.enabled {
 
 /* Overlay 2 grids on top of another */
 .board-stack {
+    /* Ensure the container is the biggest square within parent div*/
+    position: absolute;
+    inset: 0;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+    /* Use margin to center content */
+    margin: auto;
+
     display: grid;
 }
 
