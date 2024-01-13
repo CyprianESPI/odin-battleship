@@ -61,6 +61,14 @@ Another way to fix it it to remove other gh-pages branches from the Github webpa
 
 ## Learning Outcomes
 
+### Test Driven Development
+
+TDD with Jest made it easy to implement the base class and ensure their functionality.
+
+However, to keep TDD relevant, it should be added to the deploy pipeline.
+
+Due to this mistake, adding the DOM logic inside the already tested classes broke the unit tests. To fix it, the code had to be refactored which is can be quite a task depending on the project's size.
+
 ### Personal Challenge
 
 Code without using Google.
