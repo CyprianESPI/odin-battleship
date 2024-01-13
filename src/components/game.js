@@ -7,9 +7,7 @@ class Game {
         multiOnline: 2,
     }
 
-    constructor(p1Board, p2Board) {
-        this.p1Board = p1Board;
-        this.p2Board = p2Board;
+    constructor() {
         this.type = Game.Type.solo;
     }
 
@@ -27,12 +25,6 @@ class Game {
         for (let p of this.players) {
             p.shuffleShips();
         }
-
-        // Only allow to click on oponent's board
-        this.p2.board.setEnabled(true);
-        this.render();
-        // TODO: add multi
-        //this.newMutiplayerGameOnline();
     }
 
     switchPlayer() {
@@ -40,24 +32,6 @@ class Game {
             p.board.setEnabled(!p.board.enabled);
         }
         this.currentPlayer = this.currentPlayer === this.p1 ? this.p2 : this.p1;
-        this.render();
-        setTimeout(() => {
-            this.p1Board.classList.add("blurred");
-            this.p2Board.classList.add("blurred");
-            setTimeout(() => {
-                alert("It's a miss! Press ok to swap");
-                if (this.currentPlayer === this.p1) {
-                    this.p1Board.classList.remove("board-hidden");
-                    this.p2Board.classList.add("board-hidden");
-                } else {
-                    this.p1Board.classList.add("board-hidden");
-                    this.p2Board.classList.remove("board-hidden");
-                }
-
-                this.p1Board.classList.remove("blurred");
-                this.p2Board.classList.remove("blurred");
-            }, 500);
-        }, 100);
     }
 
     computerPlay() {
@@ -98,28 +72,8 @@ class Game {
 
     play(coordinates) {
         const oponent = this.getOponent();
-        const oponentBoard = this.getOponentBoard();
         const hit = this.currentPlayer.play(oponent, coordinates);
-        // Render must happen now to update board state
-        this.render();
-        // Play again on hit
-        if (hit) {
-            this.shakeBoard(oponentBoard);
-            this.checkGameOver();
-            // Exit
-            return;
-        }
-
-        switch (this.type) {
-            // Local Multiplayer Game
-            case Game.Type.multiLocal:
-                this.switchPlayer();
-                break;
-            // Solo game
-            case Game.Type.solo:
-                this.computerPlay();
-                break;
-        }
+        return hit;
     }
 
     checkGameOver() {
