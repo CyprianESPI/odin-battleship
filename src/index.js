@@ -1,4 +1,5 @@
 import Game from "./components/game";
+import GameUi from "./components/game.ui";
 import Styles from "./styles.css";
 
 function apiVisits(username) {
@@ -28,7 +29,7 @@ function main() {
 
     const boardHuman = document.getElementById("board-human");
     const boardComputer = document.getElementById("board-computer");
-    const game = new Game(boardHuman, boardComputer);
+    const game = new GameUi(boardHuman, boardComputer);
     let gameType = Game.Type.solo;
 
     // Get url param location
