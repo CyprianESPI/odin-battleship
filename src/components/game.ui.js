@@ -19,7 +19,13 @@ class GameUi extends Game {
         this.p1Board.gameBoard.setEnabled(true);
         this.render();
         // TODO: add multi
-        //this.newMutiplayerGameOnline();
+        this.newMutiplayerGameOnline();
+    }
+
+    newMutiplayerGameOnline() {
+        // Try to connect
+        console.log("connecting...");
+        this.p1.connect();
     }
 
     switchPlayer() {

@@ -40,6 +40,64 @@ class Player {
         }
     }
 
+    host() {
+        const local = new RTCPeerConnection(Player.peerConnectionConfig);
+        const remote = new RTCPeerConnection(Player.peerConnectionConfig);
+
+        // Set up event handlers for ICE candidates and data channel
+        local.onicecandidate = event => {
+            if (event.candidate) {
+                console.log("local.onicecandidate", event);
+                remote.addIceCandidate(event.candidate);
+            }
+        };
+
+        // Create data channel
+        const dataChannel = local.createDataChannel('dataChannel');
+
+        dataChannel.onopen = () => {
+            console.log('Data channel opened!');
+            dataChannel.send('Hello from peer 1!');
+        };
+
+        dataChannel.onmessage = event => {
+            console.log('Received message:', event.data);
+        };
+
+
+        // Establish connection
+        local.createOffer()
+            .then(offer => local.setLocalDescription(offer))
+            .then(() => peerConnection2.setRemoteDescription(local.localDescription))
+            .then(() => peerConnection2.createAnswer())
+            .then(answer => peerConnection2.setLocalDescription(answer))
+            .then(() => local.setRemoteDescription(peerConnection2.localDescription))
+            .catch(error => console.error('Error establishing connection:', error));
+    }
+
+    connect() {
+        const peerConnection = new RTCPeerConnection(Player.peerConnectionConfig);
+
+        // Set up event handlers for ICE candidates and data channel
+        peerConnection.onicecandidate = event => {
+            if (event.candidate) {
+                console.log("event", event);
+                //peerConnection2.addIceCandidate(event.candidate);
+            }
+        };
+
+        // Establish connection
+        peerConnection.createOffer()
+            .then(offer => peerConnection.setLocalDescription(offer))
+            .catch(error => console.error('Error establishing connection:', error));
+        /*
+        .then(() => peerConnection2.setRemoteDescription(peerConnection.localDescription))
+        .then(() => peerConnection2.createAnswer())
+        .then(answer => peerConnection2.setLocalDescription(answer))
+        .then(() => peerConnection.setRemoteDescription(peerConnection2.localDescription))
+        */
+    }
+
     play(oponent, coordinates) {
         this.plays.push(coordinates);
         // Must happen before updating list of plays
