@@ -7,13 +7,13 @@ https://CyprianESPI.github.io/odin-battleship/
 ### Bugfixes
 
 - Align ship overlay for mobile
-- Fix UT & add to watch command
 
 ### Features
 
 - new logo icon
 - Add online multiplayer
 - Improve performance with CLS (replace only children that changed in game board) | 74 now in lighthouse (mobile)
+- Improve UX
 
 ## Webpack for web
 
