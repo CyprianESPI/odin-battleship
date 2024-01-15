@@ -18,14 +18,16 @@ class GameUi extends Game {
         // Only allow to click on oponent's board
         this.p1Board.gameBoard.setEnabled(true);
         this.render();
-        // TODO: add multi
-        this.newMutiplayerGameOnline();
     }
 
-    newMutiplayerGameOnline() {
-        // Try to connect
-        console.log("connecting...");
-        this.p1.connect();
+    host() {
+        console.log("Hosting...");
+        this.p1.host();
+    }
+
+    join() {
+        console.log("Joining...");
+        this.p1.join();
     }
 
     switchPlayer() {

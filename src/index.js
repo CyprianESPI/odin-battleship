@@ -86,6 +86,15 @@ function main() {
         dialog.close();
     }));
 
+    const hostBtn = document.getElementById("host-btn");
+    hostBtn.addEventListener('click', () => {
+        game.host();
+    });
+    const joinBtn = document.getElementById("join-btn");
+    joinBtn.addEventListener('click', () => {
+        game.join();
+    });
+
     console.log("Initialized!");
 }
 

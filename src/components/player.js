@@ -41,41 +41,20 @@ class Player {
     }
 
     host() {
-        const local = new RTCPeerConnection(Player.peerConnectionConfig);
-        const remote = new RTCPeerConnection(Player.peerConnectionConfig);
-
-        // Set up event handlers for ICE candidates and data channel
-        local.onicecandidate = event => {
-            if (event.candidate) {
-                console.log("local.onicecandidate", event);
-                remote.addIceCandidate(event.candidate);
-            }
-        };
-
-        // Create data channel
-        const dataChannel = local.createDataChannel('dataChannel');
-
-        dataChannel.onopen = () => {
-            console.log('Data channel opened!');
-            dataChannel.send('Hello from peer 1!');
-        };
-
-        dataChannel.onmessage = event => {
-            console.log('Received message:', event.data);
-        };
-
+        const local = new RTCPeerConnection();
+        const remote = new RTCPeerConnection();
 
         // Establish connection
         local.createOffer()
-            .then(offer => local.setLocalDescription(offer))
-            .then(() => peerConnection2.setRemoteDescription(local.localDescription))
-            .then(() => peerConnection2.createAnswer())
-            .then(answer => peerConnection2.setLocalDescription(answer))
-            .then(() => local.setRemoteDescription(peerConnection2.localDescription))
+            .then(offer => local.setLocalDescription(new RTCSessionDescription(offer)))
+            .then(() => remote.setRemoteDescription(local.localDescription))
+            .then(() => remote.createAnswer())
+            .then(answer => remote.setLocalDescription(new RTCSessionDescription(answer)))
+            .then(() => local.setRemoteDescription(remote.localDescription))
             .catch(error => console.error('Error establishing connection:', error));
     }
 
-    connect() {
+    join() {
         const peerConnection = new RTCPeerConnection(Player.peerConnectionConfig);
 
         // Set up event handlers for ICE candidates and data channel
