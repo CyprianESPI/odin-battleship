@@ -44,6 +44,42 @@ class Player {
         const local = new RTCPeerConnection();
         const remote = new RTCPeerConnection();
 
+        // Set up event handlers for ICE candidates and data channel
+        local.onicecandidate = event => {
+            console.log("local ice", event);
+            if (event.candidate) {
+                remote.addIceCandidate(event.candidate);
+            }
+        };
+
+        remote.onicecandidate = event => {
+            console.log("remote ice", event);
+            if (event.candidate) {
+                local.addIceCandidate(event.candidate);
+            }
+        };
+
+        // Create data channel
+        const dataChannel = local.createDataChannel('dataChannel');
+        dataChannel.onopen = () => {
+            console.log('Data channel opened!');
+            dataChannel.send('Hello from local!');
+        };
+        dataChannel.onmessage = event => {
+            console.log('Received message:', event.data);
+        };
+
+        remote.ondatachannel = event => {
+            event.channel.onmessage = event => {
+                console.log('Received message:', event.data);
+            };
+
+            event.channel.onopen = () => {
+                console.log('Data channel opened!');
+                event.channel.send('Hello from remote!');
+            };
+        };
+
         // Establish connection
         local.createOffer()
             .then(offer => local.setLocalDescription(new RTCSessionDescription(offer)))
