@@ -161,7 +161,7 @@ button.enabled {
 .player-container {
     display: grid;
     grid-template-rows: auto 1fr;
-    margin: 5px;
+    margin: 10px;
 }
 
 #oponent {
