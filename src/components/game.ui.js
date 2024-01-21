@@ -26,8 +26,8 @@ class GameUi extends Game {
         super.switchPlayer();
         this.render();
         setTimeout(() => {
-            this.p1Board.classList.add("blurred");
-            this.p2Board.classList.add("blurred");
+            this.p1Board.classList.add("hidden");
+            this.p2Board.classList.add("hidden");
             setTimeout(() => {
                 alert("It's a miss! Press ok to swap");
                 if (this.currentPlayer === this.p1) {
@@ -38,8 +38,8 @@ class GameUi extends Game {
                     this.p2Board.classList.remove("board-hidden");
                 }
 
-                this.p1Board.classList.remove("blurred");
-                this.p2Board.classList.remove("blurred");
+                this.p1Board.classList.remove("hidden");
+                this.p2Board.classList.remove("hidden");
             }, 500);
         }, 100);
     }

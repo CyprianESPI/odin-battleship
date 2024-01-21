@@ -142,10 +142,6 @@ button.enabled {
     }
 }
 
-.hidden {
-    display: none;
-}
-
 /* card like container */
 .card {
     border-radius: var(--br);
@@ -165,6 +161,7 @@ button.enabled {
 .player-container {
     display: grid;
     grid-template-rows: auto 1fr;
+    margin: 5px;
 }
 
 #oponent {
@@ -191,10 +188,6 @@ button.enabled {
     margin: auto;
 
     display: grid;
-}
-
-.blurred {
-    filter: blur(10.0rem);
 }
 
 .board-stack.disabled {
@@ -350,6 +343,10 @@ input {
     &:invalid {
         border-color: var(--clr-A700);
     }
+}
+
+.hidden {
+    display: none;
 }
 
 .shake {
