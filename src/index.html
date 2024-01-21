@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="glass">
         <h1>Naval Rival</h1>
         <button id="add-p2-btn" class="rounded-btn enabled">
             <span class="material-symbols-outlined">group_add</span>
@@ -45,85 +45,22 @@
         </button>
     </header>
     <main>
-        <div id="oponent" class="card player-container">
-            <h2 id="oponent-fleet-header">Oponent</h2>
+        <div id="you" class="player-container">
+            <h2 id="your-fleet-header">You</h2>
             <div class="board-wrapper">
-                <div class="board-container">
-                    <!-- Row 1 -->
-                    <div></div>
-                    <div class="numbers">
-                        <h2>1</h2>
-                        <h2>2</h2>
-                        <h2>3</h2>
-                        <h2>4</h2>
-                        <h2>5</h2>
-                        <h2>6</h2>
-                        <h2>7</h2>
-                        <h2>8</h2>
-                        <h2>9</h2>
-                        <h2>10</h2>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="letters">
-                        <h2>A</h2>
-                        <h2>B</h2>
-                        <h2>C</h2>
-                        <h2>D</h2>
-                        <h2>E</h2>
-                        <h2>F</h2>
-                        <h2>G</h2>
-                        <h2>H</h2>
-                        <h2>I</h2>
-                        <h2>J</h2>
-                    </div>
-                    <div id="board-computer" class="board-stack board-hidden">
-                    </div>
+                <div id="board-human" class="board-stack">
                 </div>
             </div>
         </div>
-
-        <div id="you" class="card player-container">
-            <h2 id="your-fleet-header">You</h2>
+        <div id="oponent" class="player-container">
+            <h2 id="oponent-fleet-header">Oponent</h2>
             <div class="board-wrapper">
-                <div class="board-container">
-                    <!-- Row 1 -->
-                    <div></div>
-                    <div class="numbers">
-                        <h2>1</h2>
-                        <h2>2</h2>
-                        <h2>3</h2>
-                        <h2>4</h2>
-                        <h2>5</h2>
-                        <h2>6</h2>
-                        <h2>7</h2>
-                        <h2>8</h2>
-                        <h2>9</h2>
-                        <h2>10</h2>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="letters">
-                        <h2>A</h2>
-                        <h2>B</h2>
-                        <h2>C</h2>
-                        <h2>D</h2>
-                        <h2>E</h2>
-                        <h2>F</h2>
-                        <h2>G</h2>
-                        <h2>H</h2>
-                        <h2>I</h2>
-                        <h2>J</h2>
-                    </div>
-                    <div id="board-human" class="board-stack">
-                    </div>
+                <div id="board-computer" class="board-stack board-hidden">
                 </div>
             </div>
         </div>
     </main>
     <footer>
-        <h2><a href="https://www.theodinproject.com/lessons/node-path-javascript-battleship">The Odin Project | Project:
-                Battleship</a></h2>
     </footer>
     <dialog id="dialog-game-over" class="card">
         <div class="grid-container">
