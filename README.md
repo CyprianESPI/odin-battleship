@@ -1,5 +1,13 @@
 # Odin Battleship
 
+[Javascript exercise for The Odin Project curriculum](https://www.theodinproject.com/lessons/node-path-javascript-battleship)
+
+This version of the famous Battleship game supports:
+- Player versus Computer
+- Player versus Player (switch player on the same device)
+
+Play it now at:
+
 https://CyprianESPI.github.io/odin-battleship/
 
 ## TODO
@@ -10,10 +18,10 @@ https://CyprianESPI.github.io/odin-battleship/
 
 ### Features
 
-- new logo icon
+- Add new logo icon
 - Add online multiplayer
 - Improve performance with CLS (replace only children that changed in game board) | 74 now in lighthouse (mobile)
-- Improve UX
+- Improve AI
 
 ## Webpack for web
 
@@ -69,12 +77,18 @@ However, to keep TDD relevant, it should be added to the deploy pipeline.
 
 Due to this mistake, adding the DOM logic inside the already tested classes broke the unit tests. To fix it, the code had to be refactored which is can be quite a task depending on the project's size.
 
-### Personal Challenge
+### Progressive Web Application
 
-Code without using Google.
+Learned how to use a webmanifest to allow downloading the webpage as an app.
 
-Failed:
+### Performance
 
+It can be greatly affected by overusing css properties such as backdrop-filter
+
+## External resources used
+
+- Glassomorphism from https://css.glass/
 - Used StackOverflow for shuffling an array, for screen shake
 - Used GoogleFonts for icons
 - PWA from https://github.com/CarsonSlovoka/twenty48/tree/gh-pages/docs
+- Background image from Unspash https://unsplash.com/photos/body-of-water-during-daytime-hRemch0ZDwI
