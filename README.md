@@ -2,13 +2,21 @@
 
 [Javascript exercise for The Odin Project curriculum](https://www.theodinproject.com/lessons/node-path-javascript-battleship)
 
-This version of the famous Battleship game supports:
-- Player versus Computer
-- Player versus Player (switch player on the same device)
-
-Play it now at:
+Play now at:
 
 https://CyprianESPI.github.io/odin-battleship/
+
+### Player vs Computer
+
+![Player vs Computer](Battleship_PvC.png)
+
+### Player vs Player on same device
+
+![Player vs Player](Battleship_PvP2.png)
+
+Switch when ready
+
+![Player vs Player switch alert](Battleship_PvP.png)
 
 ## TODO
 
